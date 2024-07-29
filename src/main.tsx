@@ -38,40 +38,65 @@ const users: User[] = [
 // const user: User = users[1];
 const user = users[1];
 
+// const UserProfile = (props: Props) => {
+//   const user = props.user;
+
+//   return React.createElement(
+//     "div",
+//     {
+//       id: user.id,
+//       className: "placki",
+//       style: { color: user.color },
+//     },
+//     user.pet
+//       ? React.createElement("p", null, `${user.name} has a ${user.pet.name}`)
+//       : React.createElement("p", null, `${user.name} has no pet`)
+//   );
+// };
+
 type Props = {
   user: User;
 };
 
-const UserProfile = (props: Props) => {
-  const user = props.user;
+const UserProfile = ({ user }: Props) => {
+  // const user = props.user;
 
-  return React.createElement(
-    "div",
-    {
-      id: user.id,
-      className: "placki",
-      style: { color: user.color },
-    },
-    user.pet
-      ? React.createElement("p", null, `${user.name} has a ${user.pet.name}`)
-      : React.createElement("p", null, `${user.name} has no pet`)
+  return (
+    <div className="placki" id={user.id} style={{ color: user.color }}>
+      {user.pet ? (
+        <p>
+          {user.name} has a {user.pet.name}
+        </p>
+      ) : (
+        <p>{user.name} has no pet</p>
+      )}
+    </div>
   );
 };
 
 const UsersList = (props: { users: User[] }) => {
-  const users = props.users;
-
-  return React.createElement(
-    "ul",
-    null,
-    users.map((user) =>
-      // React.createElement("li", { key: user.id }, UserProfile({ user }))
-      React.createElement("li", { key: user.id }, React.createElement(UserProfile,{ user }))
-    )
+  return (
+    <ul>
+      {props.users.map((user) => (
+        <li key={user.id}>
+          <UserProfile user={user} />
+        </li>
+      ))}
+    </ul>
   );
 };
+debugger;
 
-// console.log(UsersList({ users })); // UserProfile
+// const UsersList = (props: { users: User[] }) => {
+//   const users = props.users;
+//   return React.createElement(
+//     "ul",
+//     null,
+//     users.map((user) =>
+//       React.createElement("li", { key: user.id }, React.createElement(UserProfile,{ user }))
+//     )
+//   );
+// };
 
 root.render(UsersList({ users }));
 
