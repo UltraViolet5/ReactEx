@@ -1,13 +1,37 @@
-
 //  tsrafce
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const PlaylistDetails = (props: Props) => {
-  return (
-    <div>PlaylistDetails</div>
-  )
-}
+  const playlist = {
+    id: "123",
+    name: "Playlist 123",
+    public: true,
+    description: "Cool playlist",
+  };
 
-export default PlaylistDetails
+  return (
+    <div>
+      {/* .grid.gap-3>.grid*3>strong{Name}+div{Playlist Name} */}
+
+      <div className="grid gap-3">
+        <div className="grid">
+          <strong>Name</strong>
+          <div>Playlist Name</div>
+        </div>
+
+        <div className="grid">
+          <strong>Public</strong>
+          <div>Yes</div>
+        </div>
+        <div className="grid">
+          <strong>Description</strong>
+          <div>Best Playlist</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PlaylistDetails;
