@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 type Props = {};
 
@@ -10,7 +10,12 @@ const PlaylistEditor = (props: Props) => {
     description: "Cool playlist",
   };
 
-  const changeHandler = (event) => {};
+  // const changeHandler: ChangeEventHandler<HTMLInputElement> = (event) => event.target.value;
+  // const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => event.target.value;
+  // const changeHandler = (event: 'lewy but') => event.target.value;
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => { 
+    playlist.name = event.target.value
+  };
 
   return (
     <div>
