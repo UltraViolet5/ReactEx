@@ -54,9 +54,7 @@ const PlaylistEditor = ({
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
-        <button type="submit" onClick={submit}>
-          Save
-        </button>
+        <button type="submit">Save</button>
       </div>
     </form>
   );
