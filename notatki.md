@@ -21,3 +21,7 @@ npm run dev
 
 # GIT
 git clone https://bitbucket.org/ev45ive/sages-reac-open-lipiec.git
+
+F1 -> Git Clone -> Paste:
+https://bitbucket.org/ev45ive/sages-reac-open-lipiec.git
+Clone from URL -> Select location
