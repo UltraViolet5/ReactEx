@@ -20,11 +20,13 @@ const PlaylistsView = (props: Props) => {
   };
 
   const savePlaylist = (draft: Playlist) => {
-    
     // Update list
-    const index = playlists.findIndex((p) => p.id === draft.id);
-    playlists[index] = draft;
-    setPlaylists(playlists);
+    // const index = playlists.findIndex((p) => p.id === draft.id);
+    // playlists[index] = draft;
+    // setPlaylists([...playlists]);
+
+    // Immutable set State with map()
+    setPlaylists(playlists.map((p) => (p.id === draft.id ? draft : p)));
 
     // Show details
     selectPlaylistById(draft.id);
