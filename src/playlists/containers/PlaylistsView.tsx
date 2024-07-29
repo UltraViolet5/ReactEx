@@ -16,33 +16,32 @@ const PlaylistsView = (props: Props) => {
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
     setSelected(playlists.find((p) => p.id === id)!);
+
+    // Bad Hacks! Use Reducer!!!!
+    // setPlaylists((playlists) => {
+    //   setSelected(playlists.find((p) => p.id === id)!);
+    //   return playlists;
+    // });
   };
 
   const savePlaylist = (draft: Playlist) => {
-    setPlaylists(playlists.map((p) => (p.id === draft.id ? draft : p)));
-
-    // selectPlaylistById(draft.id);
-
-    setSelectedId(draft.id);
-    setSelected(draft);
-
+    setPlaylists((playlists) =>
+      playlists.map((p) => (p.id === draft.id ? draft : p))
+    );
+    selectPlaylistById(draft.id);
+    // setSelected(draft);
     setMode("details");
   };
 
   const createPlaylist = (draft: Playlist) => {
-    draft.id = crypto.randomUUID();
-    // playlists.push(draft); // Mutable
+    setPlaylists((prevPlaylists) => [
+      ...prevPlaylists,
+      {
+        ...draft,
+        id: crypto.randomUUID(),
+      },
+    ]);
 
-    debugger;
-
-    // 1
-    setPlaylists([...playlists, draft]);
-    setPlaylists([...playlists, draft]);
-
-    setPlaylists((nextPlaylists) => /* 3 */ [...nextPlaylists, draft]);
-    setPlaylists((nextPlaylists) => /* 4 */ [...nextPlaylists, draft]);
-
-    // 2
     setSelectedId(draft.id);
     setSelected(draft);
   };
