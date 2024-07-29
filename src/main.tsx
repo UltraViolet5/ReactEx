@@ -38,10 +38,18 @@ const users: User[] = [
 // const user: User = users[1];
 const user = users[1];
 
-const UserProfile = (user: User) =>
-  React.createElement(
+type Props = {
+  user: User;
+  key: string;
+};
+
+const UserProfile = (props: Props) => {
+  const user = props.user;
+
+  return React.createElement(
     "div",
     {
+      key: props.key,
       id: user.id,
       className: "placki",
       style: { color: user.color },
@@ -50,15 +58,22 @@ const UserProfile = (user: User) =>
       ? React.createElement("p", null, `${user.name} has a ${user.pet.name}`)
       : React.createElement("p", null, `${user.name} has no pet`)
   );
+};
 
-const UsersList = (users) => {
-  return React.createElement('ul',null,
+const UsersList = (props: { users: User[] }) => {
+  const users = props.users;
 
-    React.createElement('li',null, UserProfile(user))
-  )
-}
+  return React.createElement(
+    "ul",
+    null,
+    users.map(
+      (user) => UserProfile({ user, key: user.id })
+      // React.createElement("li", { key: user.id }, UserProfile(user))
+    )
+  );
+};
 
-root.render(UsersList(users));
+root.render(UsersList({ users }));
 
 // import App from './App.tsx'
 // import './index.css'
