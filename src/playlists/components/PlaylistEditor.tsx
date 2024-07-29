@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, useState } from "react";
 
 type Props = {};
 
-const playlist = {
+const initialPlaylist = {
   id: "123",
   name: "Playlist 123",
   public: true,
@@ -11,12 +11,18 @@ const playlist = {
 
 const PlaylistEditor = (props: Props) => {
 
-  // usss
-  const [playlistName, setPlaylistName] = useState(playlist.name)
+  // const [playlistName, setPlaylistName] = useState(playlist.name);
+  // const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  //   setPlaylistName(event.target.value);
+  //   setPlaylistName(event.target.value); // NoOP === 
+  // };
 
-  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => { 
-    // playlist.name = event.target.value
-    setPlaylistName(event.target.value) // Set Dirty!
+  const [playlist, setPlaylist] = useState(initialPlaylist);
+
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    playlist.name = event.target.value;
+    setPlaylist(playlist); // Defensive copy!?
+    setPlaylist({...playlist}); // Defensive copy!?
   };
 
   return (
@@ -24,7 +30,8 @@ const PlaylistEditor = (props: Props) => {
       <div className="grid gap-3">
         <div className="grid">
           <label>Name</label>
-          <input type="text" value={playlistName} onChange={changeHandler} />
+          <input type="text" value={playlist.name} onChange={changeHandler} />
+          <div className="text-end">{playlist.name.length} / 100</div>
         </div>
 
         <div className="grid ">
