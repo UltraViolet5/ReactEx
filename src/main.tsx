@@ -6,7 +6,16 @@ import ReactDOM from "react-dom/client";
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 
-const users = [
+interface User {
+  id: string;
+  name: string;
+  color: string;
+  pet?: {
+    name: string;
+  };
+}
+
+const users: User[] = [
   {
     id: "123",
     name: "Alice",
@@ -26,21 +35,23 @@ const users = [
   },
 ];
 
+// const user: User = users[1];
 const user = users[1];
 
-const vdiv = React.createElement(
-  "div",
-  {
-    id: user.id,
-    className: "placki",
-    style: { color: user.color },
-  },
-  user.pet
-    ? React.createElement("p", null, `${user.name} has a ${user.pet.name}`)
-    : React.createElement("p", null, `${user.name} has no pet`)
-);
+const UserProfile = (user: User) =>
+  React.createElement(
+    "div",
+    {
+      id: user.id,
+      className: "placki",
+      style: { color: user.color },
+    },
+    user.pet
+      ? React.createElement("p", null, `${user.name} has a ${user.pet.name}`)
+      : React.createElement("p", null, `${user.name} has no pet`)
+  );
 
-root.render(vdiv);
+root.render(UserProfile(user));
 
 // import App from './App.tsx'
 // import './index.css'
