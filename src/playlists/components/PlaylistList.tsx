@@ -26,12 +26,11 @@ const playlists = [
 /* .grid.divide-y-2.divide-gray-500.divide-solid.px-5.py-2 */
 
 const PlaylistList = (props: Props) => {
-  
   return (
     <div className="grid divide-y divide-gray-300 divide-solid">
-      <div className="px-5 py-2">1. Banana</div>
-      <div className="px-5 py-2">2. Banana</div>
-      <div className="px-5 py-2">3. Banana</div>
+      {playlists.map((playlist, index) => (
+        <div className="px-5 py-2">{index+1}. {playlist.name}</div>
+      ))}
     </div>
   );
 };
