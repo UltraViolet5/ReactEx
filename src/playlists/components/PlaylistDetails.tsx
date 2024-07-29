@@ -28,6 +28,10 @@ const PlaylistDetails = ({ playlist }: Props) => {
           <div>{playlist.description}</div>
         </div>
       </div>
+      
+      <div className="flex justify-between">
+        <button onClick={onEdit}>Editor</button>
+      </div>
     </div>
   );
 };

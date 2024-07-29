@@ -36,6 +36,11 @@ const PlaylistEditor = ({ playlist: initialPlaylist }: Props) => {
           <textarea value={playlist.description} readOnly={true} />
         </div>
       </div>
+      
+      <div className="flex justify-between">
+        <button onClick={onCancel}>Cancel</button>
+        <button onClick={onSavel}>Save</button>
+      </div>
     </div>
   );
 };
