@@ -33,13 +33,18 @@ const PlaylistsView = (props: Props) => {
     draft.id = crypto.randomUUID();
     // playlists.push(draft); // Mutable
 
-    setPlaylists([...playlists, draft]);
+    debugger;
+
+    // 1
     setPlaylists([...playlists, draft]);
     setPlaylists([...playlists, draft]);
 
+    setPlaylists((nextPlaylists) => /* 3 */ [...nextPlaylists, draft]);
+    setPlaylists((nextPlaylists) => /* 4 */ [...nextPlaylists, draft]);
+
+    // 2
     setSelectedId(draft.id);
     setSelected(draft);
-    setMode("details");
   };
 
   const showDetails = () => {
