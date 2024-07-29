@@ -7,22 +7,14 @@ const initialPlaylist = {
   name: "Playlist 123",
   public: true,
   description: "Cool playlist",
+  // tracks: [{},{}]
 };
 
 const PlaylistEditor = (props: Props) => {
-
-  // const [playlistName, setPlaylistName] = useState(playlist.name);
-  // const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-  //   setPlaylistName(event.target.value);
-  //   setPlaylistName(event.target.value); // NoOP === 
-  // };
-
   const [playlist, setPlaylist] = useState(initialPlaylist);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    playlist.name = event.target.value;
-    setPlaylist(playlist); // Defensive copy!?
-    setPlaylist({...playlist}); // Defensive copy!?
+    setPlaylist({ ...playlist, name: event.target.value });
   };
 
   return (
@@ -36,7 +28,12 @@ const PlaylistEditor = (props: Props) => {
 
         <div className="grid ">
           <label className="flex gap-2 items-center">
-            <input type="checkbox" defaultChecked={playlist.public} /> Public
+            <input
+              type="checkbox"
+              checked={playlist.public}
+              onChange={(e) => setPlaylist({ ...playlist, public: e.target.checked }) }
+            />
+            Public
           </label>
         </div>
         <div className="grid">
