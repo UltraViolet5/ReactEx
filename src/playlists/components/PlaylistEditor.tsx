@@ -1,17 +1,30 @@
 import React, { ChangeEventHandler, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 
-type Props = { playlist: Playlist };
+type Props = {
+  playlist: Playlist;
+  onCancel: () => void;
+  onSave: (draft: Playlist) => void;
+};
 
-const PlaylistEditor = ({ playlist: initialPlaylist }: Props) => {
+const PlaylistEditor = ({
+  playlist: initialPlaylist,
+  onCancel,
+  onSave,
+}: Props) => {
   const [playlist, setPlaylist] = useState(initialPlaylist);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setPlaylist({ ...playlist, name: event.target.value });
   };
 
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSave(playlist);
+  };
+
   return (
-    <div>
+    <form onSubmit={submit}>
       <div className="grid gap-3">
         <div className="grid">
           <label>Name</label>
@@ -36,12 +49,16 @@ const PlaylistEditor = ({ playlist: initialPlaylist }: Props) => {
           <textarea value={playlist.description} readOnly={true} />
         </div>
       </div>
-      
+
       <div className="flex justify-between">
-        <button onClick={onCancel}>Cancel</button>
-        <button onClick={onSavel}>Save</button>
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+        <button type="submit" onClick={submit}>
+          Save
+        </button>
       </div>
-    </div>
+    </form>
   );
 };
 

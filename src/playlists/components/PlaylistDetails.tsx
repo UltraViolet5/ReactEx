@@ -4,13 +4,14 @@ import React from "react";
 import styles from "./PlaylistDetails.module.css";
 import { Playlist } from "../../core/model/Playlist";
 
-type Props = { playlist: Playlist };
+type Props = {
+  playlist: Playlist;
+  onEdit: () => void;
+};
 
-const PlaylistDetails = ({ playlist }: Props) => {
+const PlaylistDetails = ({ playlist,onEdit }: Props) => {
   return (
     <div>
-      {/* .grid.gap-3>.grid*3>strong{Name}+div{Playlist Name} */}
-      {false} {true} {null} {undefined}
       <div className="grid gap-3">
         <div className="grid">
           <strong>Name</strong>
@@ -28,7 +29,7 @@ const PlaylistDetails = ({ playlist }: Props) => {
           <div>{playlist.description}</div>
         </div>
       </div>
-      
+
       <div className="flex justify-between">
         <button onClick={onEdit}>Editor</button>
       </div>

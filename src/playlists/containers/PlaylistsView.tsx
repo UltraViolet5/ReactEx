@@ -45,8 +45,16 @@ const PlaylistsView = (props: Props) => {
         </div>
 
         <div className="grid gap-5">
-          {mode === "details" && <PlaylistDetails playlist={selected} />}
-          {mode === "editor" && <PlaylistEditor playlist={selected} />}
+          {mode === "details" && (
+            <PlaylistDetails playlist={selected} onEdit={showEditor} />
+          )}
+          {mode === "editor" && (
+            <PlaylistEditor
+              playlist={selected}
+              onCancel={showDetails}
+              onSave={savePlaylist}
+            />
+          )}
         </div>
       </div>
     </div>
