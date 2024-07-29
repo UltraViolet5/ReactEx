@@ -51,7 +51,14 @@ const UserProfile = (user: User) =>
       : React.createElement("p", null, `${user.name} has no pet`)
   );
 
-root.render(UserProfile(user));
+const UsersList = (users) => {
+  return React.createElement('ul',null,
+
+    React.createElement('li',null, UserProfile(user))
+  )
+}
+
+root.render(UsersList(users));
 
 // import App from './App.tsx'
 // import './index.css'
