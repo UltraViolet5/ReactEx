@@ -1,16 +1,9 @@
 import React, { ChangeEventHandler, useState } from "react";
+import { Playlist } from "../../core/model/Playlist";
 
-type Props = {};
+type Props = { playlist: Playlist };
 
-const initialPlaylist = {
-  id: "123",
-  name: "Playlist 123",
-  public: true,
-  description: "Cool playlist",
-  // tracks: [{},{}]
-};
-
-const PlaylistEditor = (props: Props) => {
+const PlaylistEditor = ({ playlist: initialPlaylist }: Props) => {
   const [playlist, setPlaylist] = useState(initialPlaylist);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -31,7 +24,9 @@ const PlaylistEditor = (props: Props) => {
             <input
               type="checkbox"
               checked={playlist.public}
-              onChange={(e) => setPlaylist({ ...playlist, public: e.target.checked }) }
+              onChange={(e) =>
+                setPlaylist({ ...playlist, public: e.target.checked })
+              }
             />
             Public
           </label>

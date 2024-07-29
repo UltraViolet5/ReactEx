@@ -1,12 +1,13 @@
 //  tsrafce
 import React from "react";
 
-import styles from './PlaylistDetails.module.css';
+import styles from "./PlaylistDetails.module.css";
+import { Playlist } from "../../core/model/Playlist";
 
-type Props = {};
+type Props = { playlist: Playlist };
 
-const PlaylistDetails = ({playlist}: Props) => {
-   return (
+const PlaylistDetails = ({ playlist }: Props) => {
+  return (
     <div>
       {/* .grid.gap-3>.grid*3>strong{Name}+div{Playlist Name} */}
       {false} {true} {null} {undefined}
@@ -21,7 +22,6 @@ const PlaylistDetails = ({playlist}: Props) => {
           {/* <div>{playlist.public? 'Yes' : 'No'}</div> */}
           {playlist.public && <div className={styles.isPublic}>Yes</div>}
           {playlist.public || <div className={styles.isPrivate}>No</div>}
-
         </div>
         <div className="grid">
           <strong>Description</strong>

@@ -10,12 +10,12 @@ const PlaylistsView = (props: Props) => {
   const [mode, setMode] = useState<"details" | "editor">("details");
   const playlists = mockPlaylists;
   
-  const [selectedId, setSelectedId] = useState("234");
+  const [selectedId, setSelectedId] = useState("123");
   const [selected, setSelected] = useState(playlists[0]);
 
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
-    setSelected(playlists.find((p) => p.id === selectedId)!);
+    setSelected(playlists.find((p) => p.id === id)!);
   };
 
   const showDetails = () => {
@@ -40,10 +40,8 @@ const PlaylistsView = (props: Props) => {
         </div>
         <div className="grid gap-5">
 
-          {selected.name}
-
           {mode === "details" && <PlaylistDetails playlist={selected} />}
-          {mode === "editor" && <PlaylistEditor />}
+          {mode === "editor" && <PlaylistEditor  playlist={selected} />}
 
           <div className="flex justify-between">
             <button onClick={showDetails}>Details</button>
