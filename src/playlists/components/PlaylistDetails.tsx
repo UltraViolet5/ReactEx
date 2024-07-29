@@ -3,9 +3,6 @@ import React from "react";
 
 import styles from './PlaylistDetails.module.css';
 
-console.log(styles);
-
-
 type Props = {};
 
 const PlaylistDetails = (props: Props) => {
