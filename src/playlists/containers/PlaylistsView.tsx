@@ -19,7 +19,7 @@ const PlaylistsView = (props: Props) => {
         <div>
           <PlaylistList/>
         </div>
-        <div>
+        <div className="grid gap-5">
           <PlaylistDetails/>
           <PlaylistEditor/>
         </div>

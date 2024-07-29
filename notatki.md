@@ -45,6 +45,9 @@ https://tailwindcss.com/docs/guides/vite
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
 
+# Tailwind forms
+https://github.com/tailwindlabs/tailwindcss-forms
+
 # Extensions
 Ctrl+Shift+X
 
