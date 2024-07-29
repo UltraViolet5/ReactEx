@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent, useState } from "react";
 import PlaylistList from "../components/PlaylistList";
 import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
@@ -6,10 +6,18 @@ import PlaylistEditor from "../components/PlaylistEditor";
 type Props = {};
 
 const PlaylistsView = (props: Props) => {
-  let mode: "details" | "editor" = "details";
+  // let mode2: "details" | "editor" = "details";
+  // const [mode, setMode] = useState("details" as "details" | "editor");
 
-  const showDetails = () => {};
-  const showEditor = () => {};
+  const [mode, setMode] = useState<"details" | "editor">("details");
+
+  const showDetails = () => {
+    setMode("details");
+  };
+
+  const showEditor = () => {
+    setMode("editor");
+  };
 
   return (
     <div>
@@ -20,13 +28,12 @@ const PlaylistsView = (props: Props) => {
           <PlaylistList />
         </div>
         <div className="grid gap-5">
-          <PlaylistDetails />
-
-          {false && <PlaylistEditor />}
+          {mode === "details" && <PlaylistDetails />}
+          {mode === "editor" && <PlaylistEditor />}
 
           <div className="flex justify-between">
-            <button>Details</button>
-            <button>Editor</button>
+            <button onClick={showDetails}>Details</button>
+            <button onClick={showEditor}>Editor</button>
           </div>
         </div>
       </div>
