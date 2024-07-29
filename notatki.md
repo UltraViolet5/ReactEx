@@ -44,3 +44,22 @@ https://tailwindcss.com/docs/guides/vite
 
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
+
+# Extensions
+Ctrl+Shift+X
+
+ES7+ React/Redux/React-Native snippets ~ dsznajder
+https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
+
+Prettier - Code formatter 
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+Tailwind CSS IntelliSense ~ Tailwind Labs
+https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+
+{
+    "tailwindCSS.emmetCompletions": true,
+}
+
+Paste JSON as Code - quicktype
+https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
