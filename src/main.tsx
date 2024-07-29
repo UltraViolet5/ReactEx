@@ -40,7 +40,6 @@ const user = users[1];
 
 type Props = {
   user: User;
-  key: string;
 };
 
 const UserProfile = (props: Props) => {
@@ -49,7 +48,6 @@ const UserProfile = (props: Props) => {
   return React.createElement(
     "div",
     {
-      key: props.key,
       id: user.id,
       className: "placki",
       style: { color: user.color },
@@ -66,12 +64,14 @@ const UsersList = (props: { users: User[] }) => {
   return React.createElement(
     "ul",
     null,
-    users.map(
-      (user) => UserProfile({ user, key: user.id })
-      // React.createElement("li", { key: user.id }, UserProfile(user))
+    users.map((user) =>
+      // React.createElement("li", { key: user.id }, UserProfile({ user }))
+      React.createElement("li", { key: user.id }, React.createElement(UserProfile,{ user }))
     )
   );
 };
+
+// console.log(UsersList({ users })); // UserProfile
 
 root.render(UsersList({ users }));
 
