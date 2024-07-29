@@ -1,6 +1,11 @@
 //  tsrafce
 import React from "react";
 
+import styles from './PlaylistDetails.module.css';
+
+console.log(styles);
+
+
 type Props = {};
 
 const PlaylistDetails = (props: Props) => {
@@ -24,9 +29,9 @@ const PlaylistDetails = (props: Props) => {
         <div className="grid">
           <strong>Public</strong>
           {/* <div>{playlist.public? 'Yes' : 'No'}</div> */}
-          {playlist.public && <div style={{ color: "red" }}>Yes</div>}
-          {playlist.public || <div style={{ color: "green" }}>No</div>}
-          
+          {playlist.public && <div className={styles.isPublic}>Yes</div>}
+          {playlist.public || <div className={styles.isPrivate}>No</div>}
+
         </div>
         <div className="grid">
           <strong>Description</strong>
