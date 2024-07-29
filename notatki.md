@@ -63,3 +63,18 @@ https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
 
 Paste JSON as Code - quicktype
 https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
+
+
+# Playlists 
+
+mkdir -p src/common/components
+
+mkdir -p src/playlists/components
+mkdir -p src/playlists/containers
+
+touch src/playlists/containers/PlaylistsView.tsx
+
+touch src/playlists/components/PlaylistList.tsx
+touch src/playlists/components/PlaylistDetails.tsx
+touch src/playlists/components/PlaylistEditor.tsx
+
