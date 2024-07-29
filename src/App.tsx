@@ -1,18 +1,16 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
+import PlaylistsView from "./playlists/containers/PlaylistsView";
 
-function App() { 
-
+function App() {
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <div className="container">
+        <h1>React App</h1>
+
+        <PlaylistsView />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }
