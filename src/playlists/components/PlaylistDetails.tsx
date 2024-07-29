@@ -7,27 +7,30 @@ const PlaylistDetails = (props: Props) => {
   const playlist = {
     id: "123",
     name: "Playlist 123",
-    public: true,
+    public: false,
     description: "Cool playlist",
   };
 
   return (
     <div>
       {/* .grid.gap-3>.grid*3>strong{Name}+div{Playlist Name} */}
-
+      {false} {true} {null} {undefined}
       <div className="grid gap-3">
         <div className="grid">
           <strong>Name</strong>
-          <div>Playlist Name</div>
+          <div>{playlist.name}</div>
         </div>
 
         <div className="grid">
           <strong>Public</strong>
-          <div>Yes</div>
+          {/* <div>{playlist.public? 'Yes' : 'No'}</div> */}
+          {playlist.public && <div style={{ color: "red" }}>Yes</div>}
+          {playlist.public || <div style={{ color: "green" }}>No</div>}
+          
         </div>
         <div className="grid">
           <strong>Description</strong>
-          <div>Best Playlist</div>
+          <div>{playlist.description}</div>
         </div>
       </div>
     </div>
