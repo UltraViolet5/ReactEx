@@ -5,15 +5,8 @@ import styles from './PlaylistDetails.module.css';
 
 type Props = {};
 
-const PlaylistDetails = (props: Props) => {
-  const playlist = {
-    id: "123",
-    name: "Playlist 123",
-    public: false,
-    description: "Cool playlist",
-  };
-
-  return (
+const PlaylistDetails = ({playlist}: Props) => {
+   return (
     <div>
       {/* .grid.gap-3>.grid*3>strong{Name}+div{Playlist Name} */}
       {false} {true} {null} {undefined}

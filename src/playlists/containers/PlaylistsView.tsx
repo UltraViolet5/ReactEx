@@ -42,7 +42,7 @@ const PlaylistsView = (props: Props) => {
 
           {selected.name}
 
-          {mode === "details" && <PlaylistDetails />}
+          {mode === "details" && <PlaylistDetails playlist={selected} />}
           {mode === "editor" && <PlaylistEditor />}
 
           <div className="flex justify-between">
