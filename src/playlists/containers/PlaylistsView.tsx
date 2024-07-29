@@ -2,14 +2,21 @@ import React, { SyntheticEvent, useState } from "react";
 import PlaylistList from "../components/PlaylistList";
 import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
+import { mockPlaylists } from "../../core/model/mockPlaylists";
 
 type Props = {};
 
 const PlaylistsView = (props: Props) => {
-  // let mode2: "details" | "editor" = "details";
-  // const [mode, setMode] = useState("details" as "details" | "editor");
-
   const [mode, setMode] = useState<"details" | "editor">("details");
+  const playlists = mockPlaylists;
+  
+  const [selectedId, setSelectedId] = useState("234");
+  const [selected, setSelected] = useState(playlists[0]);
+
+  const selectPlaylistById = (id: string) => {
+    setSelectedId(id);
+    setSelected(playlists.find((p) => p.id === selectedId)!);
+  };
 
   const showDetails = () => {
     setMode("details");
@@ -25,9 +32,16 @@ const PlaylistsView = (props: Props) => {
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <PlaylistList />
+          <PlaylistList
+            playlists={playlists}
+            selectedId={selectedId}
+            onSelect={selectPlaylistById}
+          />
         </div>
         <div className="grid gap-5">
+
+          {selected.name}
+
           {mode === "details" && <PlaylistDetails />}
           {mode === "editor" && <PlaylistEditor />}
 
