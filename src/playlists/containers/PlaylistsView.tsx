@@ -16,20 +16,14 @@ const PlaylistsView = (props: Props) => {
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
     setSelected(playlists.find((p) => p.id === id)!);
-
-    // Bad Hacks! Use Reducer!!!!
-    // setPlaylists((playlists) => {
-    //   setSelected(playlists.find((p) => p.id === id)!);
-    //   return playlists;
-    // });
   };
 
   const savePlaylist = (draft: Playlist) => {
     setPlaylists((playlists) =>
       playlists.map((p) => (p.id === draft.id ? draft : p))
     );
-    selectPlaylistById(draft.id);
-    // setSelected(draft);
+    setSelectedId(draft.id);
+    setSelected(draft);
     setMode("details");
   };
 
