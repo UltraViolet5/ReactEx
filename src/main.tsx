@@ -23,7 +23,6 @@ const users = [
     id: "345",
     name: "Kate",
     color: "green",
-    pet: { name: "Monkey" },
   },
 ];
 
@@ -36,8 +35,9 @@ const vdiv = React.createElement(
     className: "placki",
     style: { color: user.color },
   },
-  React.createElement("p", null, `${user.name} has a ${user.pet.name}`),
-  React.createElement("input", { key: "rememberMe" })
+  user.pet
+    ? React.createElement("p", null, `${user.name} has a ${user.pet.name}`)
+    : React.createElement("p", null, `${user.name} has no pet`)
 );
 
 root.render(vdiv);
