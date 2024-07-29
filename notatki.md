@@ -29,3 +29,18 @@ Clone from URL -> Select location
 
 # React Canvas/SVG
 https://konvajs.org/docs/react/
+
+# Componentns
+https://mui.com/system/getting-started/installation/
+https://v2.chakra-ui.com/docs/components/tabs/usage
+https://primereact.org/calendar/#format
+
+# Headless
+https://headlessui.com/react/menu
+https://tailwindcss.com/
+
+# Tailwind
+https://tailwindcss.com/docs/guides/vite
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
