@@ -8,8 +8,7 @@ import { Playlist } from "../../core/model/Playlist";
 type Props = {};
 
 const PlaylistsView = (props: Props) => {
-  const [mode, setMode] = useState<"details" | "editor">("details");
-
+  const [mode, setMode] = useState<"details" | "editor" | "creator">("creator");
   const [playlists, setPlaylists] = useState(mockPlaylists);
   const [selectedId, setSelectedId] = useState("123");
   const [selected, setSelected] = useState(playlists[0]);
@@ -20,16 +19,27 @@ const PlaylistsView = (props: Props) => {
   };
 
   const savePlaylist = (draft: Playlist) => {
-    // Update list
-    // const index = playlists.findIndex((p) => p.id === draft.id);
-    // playlists[index] = draft;
-    // setPlaylists([...playlists]);
-
-    // Immutable set State with map()
     setPlaylists(playlists.map((p) => (p.id === draft.id ? draft : p)));
 
-    // Show details
-    selectPlaylistById(draft.id);
+    // selectPlaylistById(draft.id);
+
+    setSelectedId(draft.id);
+    setSelected(draft);
+
+    setMode("details");
+  };
+
+  const createPlaylist = (draft: Playlist) => {
+    draft.id = crypto.randomUUID();
+    // playlists.push(draft); // Mutable
+
+    setPlaylists([...playlists, draft]);
+    setPlaylists([...playlists, draft]);
+    setPlaylists([...playlists, draft]);
+
+    setSelectedId(draft.id);
+    setSelected(draft);
+    setMode("details");
   };
 
   const showDetails = () => {
@@ -62,6 +72,14 @@ const PlaylistsView = (props: Props) => {
               playlist={selected}
               onCancel={showDetails}
               onSave={savePlaylist}
+            />
+          )}
+
+          {mode === "creator" && (
+            <PlaylistEditor
+              playlist={{ id: "", name: "", description: "", public: false }}
+              onCancel={showDetails}
+              onSave={createPlaylist}
             />
           )}
         </div>
