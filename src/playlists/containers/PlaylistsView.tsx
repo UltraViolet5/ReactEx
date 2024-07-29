@@ -21,6 +21,8 @@ const PlaylistsView = (props: Props) => {
         </div>
         <div className="grid gap-5">
           <PlaylistDetails/>
+          
+          {/* createElement(PlaylistEditor) */}
           <PlaylistEditor/>
         </div>
       </div>

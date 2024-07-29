@@ -1,20 +1,22 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, useState } from "react";
 
 type Props = {};
 
-const PlaylistEditor = (props: Props) => {
-  const playlist = {
-    id: "123",
-    name: "Playlist 123",
-    public: true,
-    description: "Cool playlist",
-  };
+const playlist = {
+  id: "123",
+  name: "Playlist 123",
+  public: true,
+  description: "Cool playlist",
+};
 
-  // const changeHandler: ChangeEventHandler<HTMLInputElement> = (event) => event.target.value;
-  // const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => event.target.value;
-  // const changeHandler = (event: 'lewy but') => event.target.value;
+const PlaylistEditor = (props: Props) => {
+
+  // usss
+  const [playlistName, setPlaylistName] = useState(playlist.name)
+
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => { 
-    playlist.name = event.target.value
+    // playlist.name = event.target.value
+    setPlaylistName(event.target.value) // Set Dirty!
   };
 
   return (
@@ -22,7 +24,7 @@ const PlaylistEditor = (props: Props) => {
       <div className="grid gap-3">
         <div className="grid">
           <label>Name</label>
-          <input type="text" value={playlist.name} onChange={changeHandler} />
+          <input type="text" value={playlistName} onChange={changeHandler} />
         </div>
 
         <div className="grid ">
