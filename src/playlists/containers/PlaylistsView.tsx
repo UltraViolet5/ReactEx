@@ -20,7 +20,6 @@ const PlaylistsView = (props: Props) => {
   };
 
   const savePlaylist = (draft: Playlist) => {
-    debugger
     
     // Update list
     const index = playlists.findIndex((p) => p.id === draft.id);
@@ -29,7 +28,6 @@ const PlaylistsView = (props: Props) => {
 
     // Show details
     selectPlaylistById(draft.id);
-    setMode("details");
   };
 
   const showDetails = () => {
