@@ -67,6 +67,8 @@ https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
 Paste JSON as Code - quicktype
 https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype
 
+# React dev tools
+https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
 
 # Playlists 
 
