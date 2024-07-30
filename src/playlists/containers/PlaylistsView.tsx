@@ -51,28 +51,9 @@ const PlaylistsView = (props: Props) => {
     setMode("editor");
   };
 
-  // Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
-  // setSelected(playlists.find((p) => p.id === selectedId));
-
-  // Sync - immediate / beforeRender
-  // const selected = playlists.find((p) => p.id === selectedId)
-  // const selected = useMemo(() => playlists.find((p) => p.id === selectedId), [selectedId])
-
-  // Async - delayed / afterRender
   useEffect(() => {
-    console.log("effect - after every render");
-  });
-
-  // y = x^2 + 3x + 2b
-  useEffect(() => {
-    console.log("effect - after render when deps changed");
-  }, [selectedId, playlists, "banana"]);
-
-  useEffect(() => {
-    console.log("effect - after first ");
-  }, [/* "banana" */]);
-
-  console.log("render");
+    setSelected(playlists.find((p) => p.id === selectedId));
+  }, [selectedId]);
 
   return (
     <div>
