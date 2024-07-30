@@ -21,12 +21,29 @@ const EMPTY_PLAYLIST: Playlist = {
   public: false,
 };
 
+function useFocus(deps: React.DependencyList = []) {
+  const ref = useRef<HTMLInputElement | null>(null);
+  const focus = () => ref.current?.focus();
+  useEffect(focus, deps);
+
+  return { ref, focus };
+}
+// const { ref: playlistNameRef, focus } = useFocus([playlist.id]);
+// useFocus() // Error: Invalid hook call // eslintreact-hooks/rules-of-hooks
+
 const PlaylistEditor = ({
   playlist: initialPlaylist = EMPTY_PLAYLIST,
   onCancel,
   onSave,
 }: Props) => {
   const [playlist, setPlaylist] = useState(initialPlaylist);
+
+  // React Hook "useId" is called conditionally. React Hooks must be called in the exact same order in every component render.eslintreact-hooks/rules-of-hooks
+  // if (Math.random() > 0.5) { const uuid = useId(); }
+
+  const uuid = useId();
+
+  const { ref: playlistNameRef, focus } = useFocus([playlist.id]);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setPlaylist({ ...playlist, name: event.target.value });
@@ -36,15 +53,7 @@ const PlaylistEditor = ({
     e.preventDefault();
     onSave(playlist);
   };
-
-  const uuid = useId();
-  const playlistNameRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    // document.getElementById(uuid + "playlistName")?.focus();
-    playlistNameRef.current?.focus();
-  }, []);
-
+  
   return (
     <form onSubmit={submit}>
       <div className="grid gap-3">
