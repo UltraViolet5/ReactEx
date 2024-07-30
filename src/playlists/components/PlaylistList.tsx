@@ -28,11 +28,12 @@ const PlaylistList = React.memo(
         ))}
       </div>
     );
-  },
+  }
   //propsAreEqual?:
-  (prevProps: Readonly<Props>, nextProps: Readonly<Props>) =>
-    prevProps.playlists === nextProps.playlists &&
-    prevProps.selectedId === nextProps.selectedId
+  // ,(prevProps: Readonly<Props>, nextProps: Readonly<Props>) =>
+  //   prevProps.playlists === nextProps.playlists &&
+  //   prevProps.selectedId === nextProps.selectedId
+  //   && prevProps.onSelect === nextProps.onSelect
 );
 
 export default PlaylistList;

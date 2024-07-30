@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import PlaylistList from "../components/PlaylistList";
 import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
@@ -13,37 +13,35 @@ const PlaylistsView = () => {
   const [selectedId, setSelectedId] = useState<Playlist["id"]>();
   const [selected, setSelected] = useState<Playlist>();
 
-  const selectPlaylistById = (id: string) => {
-    setSelectedId(id);
-  };
+  const savePlaylist = useCallback(
+    (draft: Playlist) => {
+      setPlaylists(playlists.map((p) => (p.id === draft.id ? draft : p)));
+      setSelectedId(draft.id);
+      setMode("details");
+    },
+    [playlists]
+  );
 
-  const savePlaylist = (draft: Playlist) => {
-    setPlaylists((playlists) =>
-      playlists.map((p) => (p.id === draft.id ? draft : p))
-    );
-    setSelectedId(draft.id);
-    // setSelected(draft);
+  const createPlaylist = useCallback(
+    (draft: Playlist) => {
+      draft.id = crypto.randomUUID();
+      setPlaylists([...playlists, draft]);
+      setSelectedId(draft.id);
+    },
+    [playlists]
+  );
+
+  const showDetails = useCallback(() => {
     setMode("details");
-  };
+  }, []);
 
-  const createPlaylist = (draft: Playlist) => {
-    setPlaylists((prevPlaylists) => [
-      ...prevPlaylists,
-      {
-        ...draft,
-        id: crypto.randomUUID(),
-      },
-    ]);
-    setSelectedId(draft.id);
-  };
-
-  const showDetails = () => {
-    setMode("details");
-  };
-
-  const showEditor = () => {
+  const showEditor = useCallback(() => {
     setMode("editor");
-  };
+  }, []);
+
+  const selectPlaylistById = useCallback((id: string) => {
+    setSelectedId(id);
+  }, []);
 
   useEffect(() => {
     setSelected(playlists.find((p) => p.id === selectedId));
