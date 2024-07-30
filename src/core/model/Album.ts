@@ -4,7 +4,7 @@ export interface AlbumSearchResponse {
     albums: PagingObject<AlbumResponse>
 }
 
-export interface AlbumResponse {
+export interface AlbumResponse   {
   album_type:             string;
   total_tracks:           number;
   available_markets:      string[];
@@ -25,6 +25,12 @@ export interface AlbumResponse {
   genres:                 string[];
   label:                  string;
   popularity:             number;
+}
+
+export interface Album  {
+    id:                     string;
+    images:                 Image[];
+    name:                   string;
 }
 
 export interface Artist {
