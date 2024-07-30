@@ -4,6 +4,7 @@ import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
 import { mockPlaylists } from "../../core/model/mockPlaylists";
 import { Playlist } from "../../core/model/Playlist";
+import { Button } from "primereact/button";
 
 type Props = {};
 
@@ -61,6 +62,10 @@ const PlaylistsView = (props: Props) => {
             selectedId={selectedId}
             onSelect={selectPlaylistById}
           />
+
+          <div className="flex justify-end mt-5">
+            <Button label="Create New" severity="secondary" size="small" onClick={()=>setMode('creator')} />
+          </div>
         </div>
 
         <div className="grid gap-5">

@@ -3,6 +3,7 @@ import React from "react";
 
 import styles from "./PlaylistDetails.module.css";
 import { Playlist } from "../../core/model/Playlist";
+import { Button } from "primereact/button";
 
 type Props = {
   playlist?: Playlist;
@@ -32,10 +33,10 @@ const PlaylistDetails = ({ playlist, onEdit }: Props) => {
           <strong>Description</strong>
           <div>{playlist.description}</div>
         </div>
-      </div>
 
-      <div className="flex justify-between">
-        <button onClick={onEdit}>Editor</button>
+        <div className="flex justify-between">
+          <Button onClick={onEdit} size="small">Editor</Button>
+        </div>
       </div>
     </div>
   );

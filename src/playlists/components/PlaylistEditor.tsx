@@ -1,5 +1,6 @@
 import React, { ChangeEventHandler, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
+import { Button } from "primereact/button";
 
 type Props = {
   playlist?: Playlist;
@@ -19,10 +20,6 @@ const PlaylistEditor = ({
   onCancel,
   onSave,
 }: Props) => {
-  // initialPlaylist = initialPlaylist || EMPTY_PLAYLIST; // truthy
-  // initialPlaylist ??= EMPTY_PLAYLIST; // non undefined
-
-  // const [playlist, setPlaylist] = useState(initialPlaylist ?? EMPTY_PLAYLIST);
   const [playlist, setPlaylist] = useState(initialPlaylist);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -59,13 +56,13 @@ const PlaylistEditor = ({
           <label>Description</label>
           <textarea value={playlist.description} readOnly={true} />
         </div>
-      </div>
 
-      <div className="flex justify-between">
-        <button type="button" onClick={onCancel}>
-          Cancel
-        </button>
-        <button type="submit">Save</button>
+        <div className="flex justify-between">
+          <Button type="button" onClick={onCancel} severity="danger" size="small">
+            Cancel
+          </Button>
+          <Button type="submit" severity="success" size="small">Save</Button>
+        </div>
       </div>
     </form>
   );
