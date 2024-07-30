@@ -31,3 +31,40 @@
 
 state + {...state } == state
 {y:123} + {...state, x:1 } == {x:1, y:123}
+
+
+# Destructure, spread
+
+```js
+obj1 = {a:1, b:2,       };
+obj2 = {a:'x',    c: 'y'};
+obj3 = {...obj1, ...obj2, d:'z'};
+// {a: 'x', b: 2, c: 'y', d: 'z'}
+
+```
+
+```js
+nested = {q:1}
+
+obj1 = {a:1, b:2,    nested   };
+obj2 = {a:'x',    c: 'y'};
+obj3 = {...obj1, ...obj2, d:'z'};
+// {a: 'x', b: 2, nested: {…}, c: 'y', d: 'z'}
+obj3.a = 'zmiana'
+// 'zmiana'
+obj2.a
+// 'x'
+obj3.nested.q = 2 
+// 2
+obj1.nested
+// {q: 2}
+```
+
+```js
+nested = {q:1}
+
+obj1 = {a:1, b:2,    nested   };
+obj2 = {a:'x',    c: 'y'};
+obj3 = {...obj1, ...obj2, d:'z', nested:{  ...obj1.nested } };
+// {a: 'x', b: 2, nested: {…}, c: 'y', d: 'z'}
+```
