@@ -31,12 +31,14 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
+  document.getElementById('playlistName')?.focus()
+
   return (
     <form onSubmit={submit}>
       <div className="grid gap-3">
         <div className="grid">
           <label>Name</label>
-          <input type="text" value={playlist.name} onChange={changeHandler} />
+          <input type="text" value={playlist.name} onChange={changeHandler} id="playlistName" />
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
 

@@ -49,7 +49,7 @@ const PlaylistsView = () => {
 
   useEffect(() => {
     setSelected(playlists.find((p) => p.id === selectedId));
-  }, [selectedId, playlists]);
+  }, [playlists, selectedId]);
 
   return (
     <div>
