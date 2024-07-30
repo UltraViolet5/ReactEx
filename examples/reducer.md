@@ -144,3 +144,47 @@ state = reducer(state, { type:'DEC', payload:3 });
 
 // {counter: 3, todos: Array(1)}
 ```
+
+
+# Reducer Action Creators + SLices
+
+```js
+initialState = {
+    counter: 0,
+    todos:[]
+}
+
+counterReducer = (state = 0 ,action) => {
+    switch(action.type){
+        case 'INC': return  state + action.payload 
+        case 'DEC': return  state - action.payload  
+    } 
+    return state 
+}
+
+reducer = (state,action) => {
+    switch(action.type){
+        case 'ADD_TODO': return { 
+            ...state, todos: [...state.todos, action.payload] 
+        }
+        return {
+             ...state,
+            counter: counterReducer(state.counter, action)
+        };
+    }
+}
+
+inc = (payload = 1) => ({ type:'INC', payload  })
+dec = (payload = 1) => ({ type:'DEC', payload  })
+addTodo = (payload) => ({ type:'ADD_TODO', payload  })
+state = initialState;
+
+state = reducer(state, inc() );
+state = reducer(state, inc(5));
+state = reducer(state, addTodo({ name:'Learn Redux!' }));
+state = reducer(state, dec(3));
+
+// setState(reducer(state,action))
+
+
+```
