@@ -1,12 +1,7 @@
-import React, {
-  ChangeEventHandler,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from "react";
+import React, { useId, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
+import { useFocus } from "../../core/hooks/useFocus";
 
 type Props = {
   playlist?: Playlist;
@@ -21,13 +16,6 @@ const EMPTY_PLAYLIST: Playlist = {
   public: false,
 };
 
-function useFocus(deps: React.DependencyList = []) {
-  const ref = useRef<HTMLInputElement | null>(null);
-  const focus = () => ref.current?.focus();
-  useEffect(focus, deps);
-
-  return { ref, focus };
-}
 // const { ref: playlistNameRef, focus } = useFocus([playlist.id]);
 // useFocus() // Error: Invalid hook call // eslintreact-hooks/rules-of-hooks
 
@@ -53,7 +41,7 @@ const PlaylistEditor = ({
     e.preventDefault();
     onSave(playlist);
   };
-  
+
   return (
     <form onSubmit={submit}>
       <div className="grid gap-3">
