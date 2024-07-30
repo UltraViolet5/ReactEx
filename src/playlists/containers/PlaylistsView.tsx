@@ -5,8 +5,10 @@ import { Button } from "primereact/button";
 import { usePlaylistsState } from "./usePlaylistsState";
 import { useCallback, useReducer } from "react";
 import {
+  ChangeMode,
   playlistsInitialState,
   playlistsReducer,
+  selectedPlaylist,
   SelectPlaylist,
 } from "../store/PlaylistsStore";
 
@@ -15,8 +17,14 @@ const PlaylistsView = () => {
 
   const { mode, playlists, selectedId } = state;
 
+  const selected = selectedPlaylist(state);
+
   const selectPlaylistById = useCallback(
     (id: string) => dispatch(SelectPlaylist(id)),
+    []
+  );
+  const setMode = useCallback(
+    (mode: "details" | "editor" | "creator") => dispatch(ChangeMode(mode)),
     []
   );
 
@@ -37,16 +45,19 @@ const PlaylistsView = () => {
               label="Create New"
               severity="secondary"
               size="small"
-              // onClick={() => setMode("creator")}
+              onClick={() => setMode("creator")}
             />
           </div>
         </div>
 
         <div className="grid gap-5">
-          {/* {mode === "details" && (
-            <PlaylistDetails playlist={selected} onEdit={showEditor} />
+          {mode === "details" && (
+            <PlaylistDetails
+              playlist={selected}
+              onEdit={() => setMode("editor")}
+            />
           )}
-          {mode === "editor" && (
+          {/* {mode === "editor" && (
             <PlaylistEditor
               playlist={selected}
               onCancel={showDetails}

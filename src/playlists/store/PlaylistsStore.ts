@@ -47,3 +47,7 @@ export function playlistsReducer(state: State, action: Action): State {
         default: return state
     }
 }
+
+export const selectedPlaylist = (state: State) => {
+    return state.playlists.find(p => p.id === state.selectedId)
+}
