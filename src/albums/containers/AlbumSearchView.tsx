@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import ResultsGrid from "../components/ResultsGrid";
 import { fetchAlbumSearchResults } from "../../core/services/MusicAPI";
+import { Album } from "../../core/model/Album";
 
 type Props = {};
-
+ 
 const AlbumSearchView = (props: Props) => {
+  const [albums, setAlbums] = useState<Album[]>([])
+
   const search = (query = "") => {
-    const reusults = fetchAlbumSearchResults(query);
+    const results = fetchAlbumSearchResults(query);
+    setAlbums(results)
   };
 
   return (
@@ -20,7 +24,7 @@ const AlbumSearchView = (props: Props) => {
         </div>
 
         <div>
-          <ResultsGrid />
+          <ResultsGrid results={albums} />
         </div>
       </div>
     </div>
