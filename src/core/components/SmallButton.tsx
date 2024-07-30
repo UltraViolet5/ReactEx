@@ -1,16 +1,18 @@
 import { ButtonProps, Button } from "primereact/button";
 
-type SmallButtonProps = ButtonProps & {
+type SmallButtonProps = {
   /**
    * Make is POP!
    */
   primary?: boolean;
 };
 
-export const SmallButton = (props: SmallButtonProps) => {
-  return props.primary ? (
-    <Button size="small" severity="contrast" {...props} />
+type Props = ButtonProps & SmallButtonProps;
+
+export const SmallButton = ({ primary, ...restProps }: Props) => {
+  return primary ? (
+    <Button size="small" severity="contrast" {...restProps} />
   ) : (
-    <Button size="small" {...props} />
+    <Button size="small" {...restProps} />
   );
 };
