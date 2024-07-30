@@ -8,7 +8,9 @@ const ResultsGrid = (props: Props) => {
     <div>
       <div className="grid grid-cols-4 gap-3">
         {[1, 2, 3, 4, 5].map((album) => (
-          <AlbumCard key={album} />
+          <AlbumCard key={album}>
+            Ala ma kota
+          </AlbumCard>
         ))}
       </div>
     </div>

@@ -6,14 +6,16 @@ type Props = {};
 
 const AlbumSearchView = (props: Props) => {
   return (
-    <div>
+    <div className="container">
       <h3 className="text-3xl leading-loose">Search</h3>
 
       {/* .grid.grid-cols-2>div*2 */}
+
       <div className="grid gap-5">
         <div>
           <SearchForm />
         </div>
+        
         <div>
           <ResultsGrid />
         </div>

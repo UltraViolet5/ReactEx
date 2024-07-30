@@ -5,10 +5,9 @@ export default {
     extend: {
       container: {
         padding: "1rem",
+        center: true,
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
+  plugins: [require("@tailwindcss/forms")],
 };
