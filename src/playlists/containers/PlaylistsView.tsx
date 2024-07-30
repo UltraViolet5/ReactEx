@@ -9,14 +9,12 @@ import { Button } from "primereact/button";
 const PlaylistsView = () => {
   const [mode, setMode] = useState<"details" | "editor" | "creator">("details");
   const [playlists, setPlaylists] = useState(mockPlaylists);
-  // const [selected, setSelected] = useState<Playlist | undefined>(playlists[0]);
 
   const [selectedId, setSelectedId] = useState<Playlist["id"]>();
   const [selected, setSelected] = useState<Playlist>();
 
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
-    // setSelected(playlists.find((p) => p.id === id));
   };
 
   const savePlaylist = (draft: Playlist) => {

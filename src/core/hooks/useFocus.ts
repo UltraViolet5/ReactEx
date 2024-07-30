@@ -16,3 +16,9 @@ export function useFocus(deps: React.DependencyList = []) {
 
     return { ref, focus };
 }
+
+// const { ref: playlistNameRef, focus } = useFocus([playlist.id]);
+
+// useFocus() // Error: Invalid hook call 
+
+// eslintreact-hooks/rules-of-hooks

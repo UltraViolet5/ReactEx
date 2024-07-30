@@ -16,9 +16,6 @@ const EMPTY_PLAYLIST: Playlist = {
   public: false,
 };
 
-// const { ref: playlistNameRef, focus } = useFocus([playlist.id]);
-// useFocus() // Error: Invalid hook call // eslintreact-hooks/rules-of-hooks
-
 const PlaylistEditor = ({
   playlist: initialPlaylist = EMPTY_PLAYLIST,
   onCancel,
@@ -26,12 +23,9 @@ const PlaylistEditor = ({
 }: Props) => {
   const [playlist, setPlaylist] = useState(initialPlaylist);
 
-  // React Hook "useId" is called conditionally. React Hooks must be called in the exact same order in every component render.eslintreact-hooks/rules-of-hooks
-  // if (Math.random() > 0.5) { const uuid = useId(); }
-
   const uuid = useId();
 
-  const { ref: playlistNameRef, focus } = useFocus([playlist.id]);
+  const { ref: playlistNameRef } = useFocus([playlist.id]);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setPlaylist({ ...playlist, name: event.target.value });
