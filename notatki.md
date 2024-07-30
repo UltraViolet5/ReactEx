@@ -88,3 +88,16 @@ touch src/playlists/components/PlaylistEditor.tsx
 https://redux-toolkit.js.org/tutorials/typescript
 
 https://immerjs.github.io/immer/
+
+
+# Album Search
+
+mkdir -p src/albums/components
+mkdir -p src/albums/containers
+
+touch src/albums/containers/AlbumSearchView.tsx
+touch src/albums/containers/AlbumDetailView.tsx
+
+touch src/albums/components/SearchForm.tsx
+touch src/albums/components/ResultsGrid.tsx
+touch src/albums/components/AlbumCard.tsx

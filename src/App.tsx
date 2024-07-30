@@ -1,6 +1,4 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import AlbumSearchView from "./albums/containers/AlbumSearchView";
 import PlaylistsView from "./playlists/containers/PlaylistsView";
 
 function App() {
@@ -9,7 +7,9 @@ function App() {
       <div className="container">
         <h1>React App</h1>
 
-        <PlaylistsView />
+        {/* <PlaylistsView /> */}
+        <AlbumSearchView/>
+        
       </div>
     </>
   );
