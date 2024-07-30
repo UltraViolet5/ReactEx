@@ -1,4 +1,10 @@
-import React, { ChangeEventHandler, useEffect, useId, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 
@@ -32,10 +38,12 @@ const PlaylistEditor = ({
   };
 
   const uuid = useId();
+  const playlistNameRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    document.getElementById(uuid + "playlistName")?.focus();
-  }, [uuid]);
+    // document.getElementById(uuid + "playlistName")?.focus();
+    playlistNameRef.current?.focus();
+  }, []);
 
   return (
     <form onSubmit={submit}>
@@ -47,6 +55,7 @@ const PlaylistEditor = ({
             value={playlist.name}
             onChange={changeHandler}
             id={uuid + "playlistName"}
+            ref={playlistNameRef}
           />
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
