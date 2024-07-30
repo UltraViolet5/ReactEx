@@ -37,6 +37,10 @@ const PlaylistEditor = React.memo(
 
     return (
       <form onSubmit={submit}>
+
+        <pre>{JSON.stringify(initialPlaylist,null,2)}</pre>
+        <pre>{JSON.stringify(playlist,null,2)}</pre>
+        
         <div className="grid gap-3">
           <div className="grid">
             <label>Name</label>

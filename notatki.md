@@ -83,3 +83,8 @@ touch src/playlists/components/PlaylistList.tsx
 touch src/playlists/components/PlaylistDetails.tsx
 touch src/playlists/components/PlaylistEditor.tsx
 
+
+# Redux toolkit
+https://redux-toolkit.js.org/tutorials/typescript
+
+https://immerjs.github.io/immer/

@@ -1,32 +1,36 @@
 import PlaylistList from "../components/PlaylistList";
 import PlaylistDetails from "../components/PlaylistDetails";
-import PlaylistEditor from "../components/PlaylistEditor";
 import { Button } from "primereact/button";
 import { usePlaylistsState } from "./usePlaylistsState";
-import { useCallback, useReducer } from "react";
-import {
-  ChangeMode,
-  playlistsInitialState,
-  playlistsReducer,
-  selectedPlaylist,
-  SelectPlaylist,
-} from "../store/PlaylistsStore";
+import PlaylistEditor from "../components/PlaylistEditor";
 
 const PlaylistsView = () => {
-  const [state, dispatch] = useReducer(playlistsReducer, playlistsInitialState);
+  // const [state, dispatch] = useReducer(playlistsReducer, playlistsInitialState);
 
-  const { mode, playlists, selectedId } = state;
+  // const { mode, playlists, selectedId } = state;
 
-  const selected = selectedPlaylist(state);
+  // const selected = selectedPlaylist(state);
 
-  const selectPlaylistById = useCallback(
-    (id: string) => dispatch(SelectPlaylist(id)),
-    []
-  );
-  const setMode = useCallback(
-    (mode: "details" | "editor" | "creator") => dispatch(ChangeMode(mode)),
-    []
-  );
+  // const selectPlaylistById = useCallback(
+  //   (id: string) => dispatch(SelectPlaylist(id)),
+  //   []
+  // );
+  // const setMode = useCallback(
+  //   (mode: "details" | "editor" | "creator") => dispatch(ChangeMode(mode)),
+  //   []
+  // );
+
+  const {
+    mode,
+    selected,
+    playlists,
+    selectedId,
+    savePlaylist,
+    createPlaylist,
+    showDetails,
+    selectPlaylistById,
+    setMode,
+  } = usePlaylistsState();
 
   return (
     <div>
@@ -57,7 +61,7 @@ const PlaylistsView = () => {
               onEdit={() => setMode("editor")}
             />
           )}
-          {/* {mode === "editor" && (
+          {mode === "editor" && (
             <PlaylistEditor
               playlist={selected}
               onCancel={showDetails}
@@ -67,7 +71,7 @@ const PlaylistsView = () => {
 
           {mode === "creator" && (
             <PlaylistEditor onCancel={showDetails} onSave={createPlaylist} />
-          )} */}
+          )}
         </div>
       </div>
     </div>
