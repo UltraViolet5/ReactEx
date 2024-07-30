@@ -2,16 +2,27 @@ import React, { ChangeEventHandler, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 
 type Props = {
-  playlist: Playlist;
+  playlist?: Playlist;
   onCancel: () => void;
   onSave: (draft: Playlist) => void;
 };
 
+const EMPTY_PLAYLIST: Playlist = {
+  id: "",
+  name: "",
+  description: "",
+  public: false,
+};
+
 const PlaylistEditor = ({
-  playlist: initialPlaylist,
+  playlist: initialPlaylist = EMPTY_PLAYLIST,
   onCancel,
   onSave,
 }: Props) => {
+  // initialPlaylist = initialPlaylist || EMPTY_PLAYLIST; // truthy
+  // initialPlaylist ??= EMPTY_PLAYLIST; // non undefined
+
+  // const [playlist, setPlaylist] = useState(initialPlaylist ?? EMPTY_PLAYLIST);
   const [playlist, setPlaylist] = useState(initialPlaylist);
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
