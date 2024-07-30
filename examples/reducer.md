@@ -68,3 +68,79 @@ obj2 = {a:'x',    c: 'y'};
 obj3 = {...obj1, ...obj2, d:'z', nested:{  ...obj1.nested } };
 // {a: 'x', b: 2, nested: {…}, c: 'y', d: 'z'}
 ```
+
+# reduce
+
+```js
+[1,2,3,4,5].reduce( (state,x) => {
+    return { 
+        ...state,
+        counter: state.counter + x 
+    }
+}, {
+    counter: 0,
+    todos:[]
+})
+```
+
+# Reducer
+
+```js
+
+initialState = {
+    counter: 0,
+    todos:[]
+}
+
+reducer = (state,x) => {
+    return { 
+        ...state,
+        counter: state.counter + x 
+    }
+}
+
+// [1,2,3,4,5].reduce( reducer, initialState)
+state = initialState;
+
+state = reducer(state, 1)
+state = reducer(state, 2)
+state = reducer(state, 3)
+
+// {counter: 6, todos: Array(0)}
+
+```
+
+# Reducer
+
+```js
+initialState = {
+    counter: 0,
+    todos:[]
+}
+
+reducer = (state,action) => {
+    switch(action.type){
+        case 'INC': return { 
+            ...state, counter: state.counter + action.payload 
+        }
+        case 'DEC': return { 
+            ...state, counter: state.counter - action.payload 
+        }
+        case 'ADD_TODO': return { 
+            ...state, todos: [...state.todos, action.payload] 
+        }
+        return state;
+    }
+}
+
+// [1,2,3,4,5].reduce( reducer, initialState)
+state = initialState;
+
+state = reducer(state, { type:'INC', payload:1 });
+state = reducer(state, { type:'INC', payload:5 });
+state = reducer(state, { type:'ADD_TODO', payload: { name:'Learn REdux!' }});
+state = reducer(state, { type:'DEC', payload:3 });
+
+
+// {counter: 3, todos: Array(1)}
+```
