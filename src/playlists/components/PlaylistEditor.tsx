@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useState } from "react";
+import React, { ChangeEventHandler, useEffect, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 
@@ -31,14 +31,21 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
-  document.getElementById('playlistName')?.focus()
+  useEffect(() => {
+    document.getElementById("playlistName")?.focus();
+  }, []);
 
   return (
     <form onSubmit={submit}>
       <div className="grid gap-3">
         <div className="grid">
           <label>Name</label>
-          <input type="text" value={playlist.name} onChange={changeHandler} id="playlistName" />
+          <input
+            type="text"
+            value={playlist.name}
+            onChange={changeHandler}
+            id="playlistName"
+          />
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
 
@@ -56,14 +63,26 @@ const PlaylistEditor = ({
         </div>
         <div className="grid">
           <label>Description</label>
-          <textarea value={playlist.description} readOnly={true} />
+          <textarea
+            value={playlist.description}
+            onChange={(e) =>
+              setPlaylist({ ...playlist, description: e.target.value })
+            }
+          />
         </div>
 
         <div className="flex justify-between">
-          <Button type="button" onClick={onCancel} severity="danger" size="small">
+          <Button
+            type="button"
+            onClick={onCancel}
+            severity="danger"
+            size="small"
+          >
             Cancel
           </Button>
-          <Button type="submit" severity="success" size="small">Save</Button>
+          <Button type="submit" severity="success" size="small">
+            Save
+          </Button>
         </div>
       </div>
     </form>
