@@ -15,7 +15,23 @@ const PlaylistsView = (props: Props) => {
 
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
-    setSelected(playlists.find((p) => p.id === id)!);
+
+    // const found = playlists.find((p) => p.id === id) as any
+    // const found = playlists.find((p) => p.id === id) as Playlist;
+    // const found = {} as Playlist;
+    // const found = playlists.find((p) => p.id === id)!;
+
+    const found = playlists.find((p) => p.id === id) as Playlist | undefined; // | null
+
+    // Type Narrowing
+    if (found !== undefined) {
+      setSelected(found); // Playlist
+    } else if (found === undefined) {
+      found; //  undefined
+    } else {
+      found; //  never
+      throw new Error("Unexpected result found");
+    }
   };
 
   const savePlaylist = (draft: Playlist) => {
