@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PlaylistList from "../components/PlaylistList";
 import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
@@ -6,9 +6,7 @@ import { mockPlaylists } from "../../core/model/mockPlaylists";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 
-type Props = {};
-
-const PlaylistsView = (props: Props) => {
+const PlaylistsView = () => {
   const [mode, setMode] = useState<"details" | "editor" | "creator">("details");
   const [playlists, setPlaylists] = useState(mockPlaylists);
   // const [selected, setSelected] = useState<Playlist | undefined>(playlists[0]);
@@ -51,9 +49,19 @@ const PlaylistsView = (props: Props) => {
     setMode("editor");
   };
 
+  // y = 2x + b
   useEffect(() => {
+    console.log("effect");
+
     setSelected(playlists.find((p) => p.id === selectedId));
-  }, [selectedId]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId, playlists]);
+
+  // React Hook useEffect has a missing dependency: 'playlists'. 
+  // Either include it or remove the dependency array. 
+  // You can also replace multiple useState variables with useReducer if 'setSelected' needs the current value of 'playlists'
+  // .eslintreact-hooks/exhaustive-deps
 
   return (
     <div>
