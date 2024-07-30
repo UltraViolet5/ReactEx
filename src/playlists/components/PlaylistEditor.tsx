@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useEffect, useState } from "react";
+import React, { ChangeEventHandler, useEffect, useId, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 
@@ -31,9 +31,11 @@ const PlaylistEditor = ({
     onSave(playlist);
   };
 
+  const uuid = useId();
+
   useEffect(() => {
-    document.getElementById("playlistName")?.focus();
-  }, []);
+    document.getElementById(uuid + "playlistName")?.focus();
+  }, [uuid]);
 
   return (
     <form onSubmit={submit}>
@@ -44,7 +46,7 @@ const PlaylistEditor = ({
             type="text"
             value={playlist.name}
             onChange={changeHandler}
-            id="playlistName"
+            id={uuid + "playlistName"}
           />
           <div className="text-end">{playlist.name.length} / 100</div>
         </div>
