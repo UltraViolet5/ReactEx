@@ -22,51 +22,51 @@ const PlaylistEditor = React.memo(
     onCancel,
     onSave,
   }: Props) => {
-    const [playlist, setPlaylist] = useState(playlistFromProps);
+    const [playlistState, setPlaylistState] = useState(playlistFromProps);
 
     // Sync with parent props:
-    useEffect(() => setPlaylist(playlistFromProps), [playlistFromProps]);
+    useEffect(() => setPlaylistState(playlistFromProps), [playlistFromProps]);
 
     const uuid = useId();
 
-    const { ref: playlistNameRef } = useFocus([playlist.id]);
+    const { ref: playlistNameRef } = useFocus([playlistState.id]);
 
     const changeHandler = (
       event: React.ChangeEvent<HTMLInputElement>
     ): void => {
-      setPlaylist({ ...playlist, name: event.target.value });
+      setPlaylistState({ ...playlistState, name: event.target.value });
     };
 
     const submit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      onSave(playlist);
+      onSave(playlistState);
     };
 
     return (
       <form onSubmit={submit}>
-        <pre>{JSON.stringify(playlistFromProps, null, 2)}</pre>
-        <pre>{JSON.stringify(playlist, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(playlistFromProps, null, 2)}</pre>
+        <pre>{JSON.stringify(playlist, null, 2)}</pre> */}
 
         <div className="grid gap-3">
           <div className="grid">
             <label>Name</label>
             <input
               type="text"
-              value={playlist.name}
+              value={playlistState.name}
               onChange={changeHandler}
               id={uuid + "playlistName"}
               ref={playlistNameRef}
             />
-            <div className="text-end">{playlist.name.length} / 100</div>
+            <div className="text-end">{playlistState.name.length} / 100</div>
           </div>
 
           <div className="grid ">
             <label className="flex gap-2 items-center">
               <input
                 type="checkbox"
-                checked={playlist.public}
+                checked={playlistState.public}
                 onChange={(e) =>
-                  setPlaylist({ ...playlist, public: e.target.checked })
+                  setPlaylistState({ ...playlistState, public: e.target.checked })
                 }
               />
               Public
@@ -75,9 +75,9 @@ const PlaylistEditor = React.memo(
           <div className="grid">
             <label>Description</label>
             <textarea
-              value={playlist.description}
+              value={playlistState.description}
               onChange={(e) =>
-                setPlaylist({ ...playlist, description: e.target.value })
+                setPlaylistState({ ...playlistState, description: e.target.value })
               }
             />
           </div>
