@@ -1,4 +1,4 @@
-import React, { useId, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 import { useFocus } from "../../core/hooks/useFocus";
@@ -17,8 +17,15 @@ const EMPTY_PLAYLIST: Playlist = {
 };
 
 const PlaylistEditor = React.memo(
-  ({ playlist: initialPlaylist = EMPTY_PLAYLIST, onCancel, onSave }: Props) => {
-    const [playlist, setPlaylist] = useState(initialPlaylist);
+  ({
+    playlist: playlistFromProps = EMPTY_PLAYLIST,
+    onCancel,
+    onSave,
+  }: Props) => {
+    const [playlist, setPlaylist] = useState(playlistFromProps);
+
+    // Sync with parent props:
+    useEffect(() => setPlaylist(playlistFromProps), [playlistFromProps]);
 
     const uuid = useId();
 
@@ -37,10 +44,9 @@ const PlaylistEditor = React.memo(
 
     return (
       <form onSubmit={submit}>
+        <pre>{JSON.stringify(playlistFromProps, null, 2)}</pre>
+        <pre>{JSON.stringify(playlist, null, 2)}</pre>
 
-        <pre>{JSON.stringify(initialPlaylist,null,2)}</pre>
-        <pre>{JSON.stringify(playlist,null,2)}</pre>
-        
         <div className="grid gap-3">
           <div className="grid">
             <label>Name</label>
