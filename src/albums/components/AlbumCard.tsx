@@ -1,6 +1,7 @@
-import { Button } from "primereact/button";
+import { Button, ButtonProps } from "primereact/button";
 import { Card, CardProps } from "primereact/card";
 import React, { PropsWithChildren } from "react";
+import { SmallButton } from "../../core/components/SmallButton";
 
 type Props = {};
 
@@ -14,7 +15,12 @@ const AlbumCard = ({ children }: PropsWithChildren) => {
         footer={() => {
           return (
             <div className="flex justify-end">
-              <Button size="small" link={false} label="details" />
+              <SmallButton
+                size="small"
+                link={false}
+                label="details"
+                primary={true}
+              />
             </div>
           );
         }}
