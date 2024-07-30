@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import PlaylistList from "../components/PlaylistList";
 import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
@@ -18,7 +18,7 @@ const PlaylistsView = (props: Props) => {
 
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
-    setSelected(playlists.find((p) => p.id === id));
+    // setSelected(playlists.find((p) => p.id === id));
   };
 
   const savePlaylist = (draft: Playlist) => {
@@ -26,7 +26,7 @@ const PlaylistsView = (props: Props) => {
       playlists.map((p) => (p.id === draft.id ? draft : p))
     );
     setSelectedId(draft.id);
-    setSelected(draft);
+    // setSelected(draft);
     setMode("details");
   };
 
@@ -40,7 +40,7 @@ const PlaylistsView = (props: Props) => {
     ]);
 
     setSelectedId(draft.id);
-    setSelected(draft);
+    // setSelected(draft);
   };
 
   const showDetails = () => {
@@ -50,6 +50,19 @@ const PlaylistsView = (props: Props) => {
   const showEditor = () => {
     setMode("editor");
   };
+
+  // Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+  // setSelected(playlists.find((p) => p.id === selectedId));
+
+  // Sync - immediate
+  // const selected = playlists.find((p) => p.id === selectedId)
+
+  useEffect(() => {
+    console.log("effect");
+    setSelected(playlists.find((p) => p.id === selectedId));
+  });
+
+  console.log("render");
 
   return (
     <div>
@@ -64,7 +77,12 @@ const PlaylistsView = (props: Props) => {
           />
 
           <div className="flex justify-end mt-5">
-            <Button label="Create New" severity="secondary" size="small" onClick={()=>setMode('creator')} />
+            <Button
+              label="Create New"
+              severity="secondary"
+              size="small"
+              onClick={() => setMode("creator")}
+            />
           </div>
         </div>
 
