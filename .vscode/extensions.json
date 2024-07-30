@@ -3,6 +3,7 @@
         "bradlc.vscode-tailwindcss",
         "dsznajder.es7-react-js-snippets",
         "esbenp.prettier-vscode",
-        "quicktype.quicktype"
+        "quicktype.quicktype",
+        "dbaeumer.vscode-eslint"
     ]
 }

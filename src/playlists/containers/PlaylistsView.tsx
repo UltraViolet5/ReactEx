@@ -36,9 +36,7 @@ const PlaylistsView = () => {
         id: crypto.randomUUID(),
       },
     ]);
-
     setSelectedId(draft.id);
-    // setSelected(draft);
   };
 
   const showDetails = () => {
@@ -49,19 +47,9 @@ const PlaylistsView = () => {
     setMode("editor");
   };
 
-  // y = 2x + b
   useEffect(() => {
-    console.log("effect");
-
     setSelected(playlists.find((p) => p.id === selectedId));
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId, playlists]);
-
-  // React Hook useEffect has a missing dependency: 'playlists'. 
-  // Either include it or remove the dependency array. 
-  // You can also replace multiple useState variables with useReducer if 'setSelected' needs the current value of 'playlists'
-  // .eslintreact-hooks/exhaustive-deps
 
   return (
     <div>
