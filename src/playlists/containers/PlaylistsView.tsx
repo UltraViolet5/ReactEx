@@ -3,20 +3,22 @@ import PlaylistDetails from "../components/PlaylistDetails";
 import PlaylistEditor from "../components/PlaylistEditor";
 import { Button } from "primereact/button";
 import { usePlaylistsState } from "./usePlaylistsState";
+import { useCallback, useReducer } from "react";
+import {
+  playlistsInitialState,
+  playlistsReducer,
+  SelectPlaylist,
+} from "../store/PlaylistsStore";
 
 const PlaylistsView = () => {
-  const {
-    mode,
-    selected,
-    playlists,
-    selectedId,
-    savePlaylist,
-    createPlaylist,
-    showDetails,
-    showEditor,
-    selectPlaylistById,
-    setMode,
-  } = usePlaylistsState();
+  const [state, dispatch] = useReducer(playlistsReducer, playlistsInitialState);
+
+  const { mode, playlists, selectedId } = state;
+
+  const selectPlaylistById = useCallback(
+    (id: string) => dispatch(SelectPlaylist(id)),
+    []
+  );
 
   return (
     <div>
@@ -35,13 +37,13 @@ const PlaylistsView = () => {
               label="Create New"
               severity="secondary"
               size="small"
-              onClick={() => setMode("creator")}
+              // onClick={() => setMode("creator")}
             />
           </div>
         </div>
 
         <div className="grid gap-5">
-          {mode === "details" && (
+          {/* {mode === "details" && (
             <PlaylistDetails playlist={selected} onEdit={showEditor} />
           )}
           {mode === "editor" && (
@@ -54,7 +56,7 @@ const PlaylistsView = () => {
 
           {mode === "creator" && (
             <PlaylistEditor onCancel={showDetails} onSave={createPlaylist} />
-          )}
+          )} */}
         </div>
       </div>
     </div>
