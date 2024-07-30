@@ -10,15 +10,18 @@ export function usePlaylistsState() {
   const [selected, setSelected] = useState<Playlist>();
 
   const savePlaylist = useCallback((draft: Playlist) => {
-    setPlaylists((playlists) => playlists.map((p) => (p.id === draft.id ? draft : p))
+    setPlaylists((playlists) =>
+      playlists.map((p) => (p.id === draft.id ? draft : p))
     );
     setSelectedId(draft.id);
     setMode("details");
   }, []);
 
   const createPlaylist = useCallback((draft: Playlist) => {
-    draft.id = crypto.randomUUID();
-    setPlaylists((playlists) => [...playlists, draft]);
+    setPlaylists((playlists) => [
+      ...playlists,
+      { ...draft, id: crypto.randomUUID() },
+    ]);
     setSelectedId(draft.id);
   }, []);
 
