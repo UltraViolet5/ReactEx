@@ -20,9 +20,6 @@ const PlaylistEditor = React.memo(
   ({ playlist: initialPlaylist = EMPTY_PLAYLIST, onCancel, onSave }: Props) => {
     const [playlist, setPlaylist] = useState(initialPlaylist);
 
-    console.log('Render form');
-    
-
     const uuid = useId();
 
     const { ref: playlistNameRef } = useFocus([playlist.id]);

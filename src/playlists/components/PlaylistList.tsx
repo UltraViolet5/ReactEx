@@ -9,7 +9,6 @@ type Props = {
 
 const PlaylistList = React.memo(
   ({ playlists, selectedId, onSelect }: Props) => {
-    console.log("render PlaylistList ");
 
     return (
       <div className="grid divide-y divide-gray-300 divide-solid">
