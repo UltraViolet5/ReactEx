@@ -5,11 +5,15 @@ import styles from "./PlaylistDetails.module.css";
 import { Playlist } from "../../core/model/Playlist";
 
 type Props = {
-  playlist: Playlist;
+  playlist?: Playlist;
   onEdit: () => void;
 };
 
-const PlaylistDetails = ({ playlist,onEdit }: Props) => {
+const PlaylistDetails = ({ playlist, onEdit }: Props) => {
+  // Type Narrowing - Function Guard / Early return
+  if (!playlist)
+    return <p className="text-blue-500 px-2">No playlist selected</p>;
+
   return (
     <div>
       <div className="grid gap-3">

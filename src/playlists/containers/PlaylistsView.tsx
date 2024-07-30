@@ -8,30 +8,16 @@ import { Playlist } from "../../core/model/Playlist";
 type Props = {};
 
 const PlaylistsView = (props: Props) => {
-  const [mode, setMode] = useState<"details" | "editor" | "creator">("creator");
+  const [mode, setMode] = useState<"details" | "editor" | "creator">("details");
   const [playlists, setPlaylists] = useState(mockPlaylists);
-  const [selectedId, setSelectedId] = useState("123");
-  const [selected, setSelected] = useState(playlists[0]);
+  // const [selected, setSelected] = useState<Playlist | undefined>(playlists[0]);
+
+  const [selectedId, setSelectedId] = useState<Playlist["id"]>();
+  const [selected, setSelected] = useState<Playlist>();
 
   const selectPlaylistById = (id: string) => {
     setSelectedId(id);
-
-    // const found = playlists.find((p) => p.id === id) as any
-    // const found = playlists.find((p) => p.id === id) as Playlist;
-    // const found = {} as Playlist;
-    // const found = playlists.find((p) => p.id === id)!;
-
-    const found = playlists.find((p) => p.id === id) as Playlist | undefined; // | null
-
-    // Type Narrowing
-    if (found !== undefined) {
-      setSelected(found); // Playlist
-    } else if (found === undefined) {
-      found; //  undefined
-    } else {
-      found; //  never
-      throw new Error("Unexpected result found");
-    }
+    setSelected(playlists.find((p) => p.id === id));
   };
 
   const savePlaylist = (draft: Playlist) => {
@@ -81,7 +67,7 @@ const PlaylistsView = (props: Props) => {
           {mode === "details" && (
             <PlaylistDetails playlist={selected} onEdit={showEditor} />
           )}
-          {mode === "editor" && (
+          {mode === "editor" && selected && (
             <PlaylistEditor
               playlist={selected}
               onCancel={showDetails}
