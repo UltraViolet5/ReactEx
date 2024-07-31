@@ -158,3 +158,10 @@ https://axios-http.com/docs/intro
         }
     ],
 ```
+
+# Hooks
+https://usehooks.com/usedebounce
+https://use-http.com/#/
+https://swr.vercel.app/
+
+https://tanstack.com/query/latest
