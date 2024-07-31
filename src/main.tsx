@@ -15,6 +15,7 @@ import AlbumDetailView from "./albums/containers/AlbumDetailView.tsx";
 import { HTTPError } from "ky";
 import { checkLogin } from "./core/services/Auth.ts";
 import { fetchAlbumById } from "./core/services/MusicAPI.ts";
+import UserContextProvider from "./core/contexts/UserContext.tsx";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -91,9 +92,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={client}>
-      <PrimeReactProvider>
-        <RouterProvider router={router} />
-      </PrimeReactProvider>
+      <UserContextProvider>
+        <PrimeReactProvider>
+          <RouterProvider router={router} />
+        </PrimeReactProvider>
+      </UserContextProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );

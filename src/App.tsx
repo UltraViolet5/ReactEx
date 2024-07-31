@@ -1,26 +1,11 @@
-import { SmallButton } from "./core/components/SmallButton";
-import { initLogin } from "./core/services/Auth";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { NavBar } from "./NavBar";
 
 function App() {
   return (
     <>
       <div className="container">
-        <div className="flex justify-between items-center gap-5">
-          <h1>React App</h1>
-
-          <NavLink to={"/music/search"}>Search</NavLink>
-          <NavLink to={"/playlists"}>Playlists</NavLink>
-
-          <div className="flex-1"></div>
-
-          <SmallButton
-            label="Login"
-            severity="contrast"
-            className="float-end"
-            onClick={initLogin}
-          />
-        </div>
+        <NavBar />
 
         <Outlet />
       </div>

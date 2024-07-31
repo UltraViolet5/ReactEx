@@ -2,6 +2,7 @@ import React, { useEffect, useId, useState } from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 import { useFocus } from "../../core/hooks/useFocus";
+import { useUserProfile } from "../../core/contexts/UserContext";
 
 type Props = {
   playlist?: Playlist;
@@ -41,6 +42,8 @@ const PlaylistEditor = React.memo(
       e.preventDefault();
       onSave(playlistState);
     };
+
+    const {user} = useUserProfile()
 
     return (
       <form onSubmit={submit}>
