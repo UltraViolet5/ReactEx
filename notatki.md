@@ -138,3 +138,13 @@ https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf
 
 
 https://learnyouahaskell.com/ 
+
+
+# Ky / Axios / etc..
+
+https://medium.com/@muzammilsyed270300/why-you-should-use-ky-instead-of-axios-for-http-requests-in-your-frontend-2c7878be3b30
+
+https://github.com/sindresorhus/ky
+
+https://axios-http.com/docs/intro
+
