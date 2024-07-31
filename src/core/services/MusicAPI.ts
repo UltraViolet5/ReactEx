@@ -1,5 +1,5 @@
 import { Options } from "ky";
-import { AlbumSearchResponse, PagingObject } from "../model/Album";
+import { Album, AlbumResponse, AlbumSearchResponse, PagingObject } from "../model/Album";
 import { Playlist } from "../model/Playlist";
 import { MusicAPI } from "./APIConfig";
 
@@ -16,6 +16,12 @@ export function fetchPlaylists(options?: Options) {
     return MusicAPI.get('me/playlists', {
         ...options
     }).json<PagingObject<Playlist>>();
+}
+
+export function fetchAlbumById(id: Album['id'], options?: Options) {
+    return MusicAPI.get('albums/' + id, {
+        ...options
+    }).json<AlbumResponse>();
 }
 
 

@@ -14,6 +14,7 @@ import PlaylistsView from "./playlists/containers/PlaylistsView.tsx";
 import AlbumDetailView from "./albums/containers/AlbumDetailView.tsx";
 import { HTTPError } from "ky";
 import { checkLogin } from "./core/services/Auth.ts";
+import { fetchAlbumById } from "./core/services/MusicAPI.ts";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -30,7 +31,7 @@ const client = new QueryClient({
         return false;
       },
       retryDelay(failureCount, error) {
-        return 500 * (failureCount ** 2);
+        return 500 * failureCount ** 2;
       },
     },
   },
@@ -40,6 +41,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader() {
+      return checkLogin();
+    },
     children: [
       {
         index: true,
@@ -55,6 +59,12 @@ const router = createBrowserRouter([
           {
             path: "albums/:albumId",
             element: <AlbumDetailView />,
+            loader: async ({ params, request, context }) => {
+              if (!params["albumId"])
+                throw new Response("Not Found", { status: 404 });
+
+              return fetchAlbumById(params["albumId"]);
+            },
           },
         ],
       },
@@ -68,7 +78,7 @@ const router = createBrowserRouter([
       {
         path: "callback",
         loader() {
-          checkLogin()
+          checkLogin();
           return redirect("/music/search");
         },
       },

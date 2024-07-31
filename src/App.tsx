@@ -1,13 +1,8 @@
-import { Button } from "primereact/button";
-import AlbumSearchView from "./albums/containers/AlbumSearchView";
-import PlaylistsView from "./playlists/containers/PlaylistsView";
 import { SmallButton } from "./core/components/SmallButton";
-import { checkLogin, initLogin } from "./core/services/Auth";
-import { useMemo } from "react";
+import { initLogin } from "./core/services/Auth";
 import { NavLink, Outlet } from "react-router-dom";
 
-function App() { 
-
+function App() {
   return (
     <>
       <div className="container">
