@@ -107,3 +107,7 @@ touch src/albums/containers/AlbumDetailView.tsx
 touch src/albums/components/SearchForm.tsx
 touch src/albums/components/ResultsGrid.tsx
 touch src/albums/components/AlbumCard.tsx
+
+## The Loop - Jake Archibald
+https://www.youtube.com/watch?v=cCOL7MC4Pl0&ab_channel=JSConf
+https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf

@@ -34,3 +34,7 @@ console.log(5)  // sync
 2 // (Macro) Task Queue
 
 ```
+
+## The Loop
+https://www.youtube.com/watch?v=cCOL7MC4Pl0&ab_channel=JSConf
+https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf
