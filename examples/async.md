@@ -113,3 +113,32 @@ echo('Ala', res => {
 // 6 sec...
 // Ala ma  kota 
 ```
+---
+
+# new Promise
+
+```js
+function echo(msg) {
+    return new Promise((resolve)=>{       
+        setTimeout(()=>{
+            resolve(msg)
+        }, 2_000)
+    }) 
+}
+
+promise = echo('Ala')
+
+// ----
+
+promise.then(console.log) 
+promise.then(console.log) 
+// Promise {<pending>}
+// 2 sec..
+// Ala
+
+promise.then(console.log)
+console.log('juz')
+// juz
+// Ala
+
+```
