@@ -1,6 +1,7 @@
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import React, { useEffect, useRef, useState } from "react";
+import { useDebounceEffect } from "./useDebounceEffect";
 
 type Props = {
   onSearch: (query: string) => void;
@@ -8,14 +9,11 @@ type Props = {
 
 const SearchForm = ({ onSearch }: Props) => {
   const [query, setQuery] = useState("");
-  
+
   const submit = () => onSearch(query);
 
-  // Debounce
-  useEffect(() => {
-    const handler = setTimeout(submit, 500);
-
-    return () => clearTimeout(handler);
+  useDebounceEffect(() => {
+    onSearch(query);
   }, [query]);
 
   return (
