@@ -72,6 +72,12 @@ https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadoplj
 
 # Playlists 
 
+mkdir -p src/core/
+mkdir -p src/components
+mkdir -p src/containers
+
+-- 
+
 mkdir -p src/common/components
 
 mkdir -p src/playlists/components

@@ -59,3 +59,4 @@ const mockAlbums: Album[] = [
 ];
 
 export default mockAlbums;
+ 
