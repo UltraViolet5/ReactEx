@@ -1,4 +1,4 @@
-import {  AlbumSearchResponse, PagingObject } from "../model/Album";
+import { AlbumSearchResponse, PagingObject } from "../model/Album";
 import { Playlist } from "../model/Playlist";
 import { MusicAPI } from "./APIConfig";
 
@@ -9,7 +9,6 @@ export function fetchAlbumSearchResults(query = 'batman') {
         },
     }).json<AlbumSearchResponse>();
 }
-
 
 export function fetchPlaylists() {
     return MusicAPI.get('me/playlists', {}).json<PagingObject<Playlist>>();
