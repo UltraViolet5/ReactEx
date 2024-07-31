@@ -1,4 +1,5 @@
 import ky from "ky";
+import { getToken } from "./Auth";
 
 export const MusicAPI = ky.create({
     // headers: {
@@ -8,7 +9,7 @@ export const MusicAPI = ky.create({
     hooks: { // Axios -> Interceptors
         beforeRequest: [
             (request, options) => {
-                request.headers.set('Authorization', `Bearer lubieplacki`) // TODO: Get real token!
+                request.headers.set('Authorization', `Bearer ${getToken()}`) // TODO: Get real token!
                 return request
             }
         ],
