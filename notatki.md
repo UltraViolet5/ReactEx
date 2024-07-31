@@ -165,3 +165,5 @@ https://use-http.com/#/
 https://swr.vercel.app/
 
 https://tanstack.com/query/latest
+
+https://tkdodo.eu/blog/practical-react-query

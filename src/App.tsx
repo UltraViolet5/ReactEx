@@ -4,6 +4,7 @@ import PlaylistsView from "./playlists/containers/PlaylistsView";
 import { SmallButton } from "./core/components/SmallButton";
 import { checkLogin, initLogin } from "./core/services/Auth";
 import { useMemo } from "react";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const loggedIn = useMemo(checkLogin, []);
@@ -20,8 +21,7 @@ function App() {
 
         <h1>React App</h1>
 
-        {/* <PlaylistsView /> */}
-        <AlbumSearchView />
+        <Outlet />
       </div>
     </>
   );
