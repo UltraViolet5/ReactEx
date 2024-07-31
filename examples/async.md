@@ -268,3 +268,28 @@ async function pobierzZoo() {
 pobierzZoo().then(console.log) 
 
 ```
+
+
+# Async/Await Traps
+
+```js
+ 
+async function pobierzZoo() {
+   try{
+     const user = await echo('Ala') 
+
+     echo('Analitics', 'err') // Uncaught!
+
+     // Paralell :
+     const pKot = echo(user + ' ma kota ' )
+     const pPies = echo(user + ' ma pieseła ')
+ 
+      return [await pKot, await pPies]; 
+    }catch(error){
+      return echo('Nie ma zoo!') // No need for await
+    }
+}
+
+pobierzZoo().then(console.log) 
+
+```
