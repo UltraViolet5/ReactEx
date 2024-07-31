@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 type Props = {
   onSearch: (query: string) => void;
@@ -8,20 +8,26 @@ type Props = {
 
 const SearchForm = ({ onSearch }: Props) => {
   const [query, setQuery] = useState("");
-  // const query = useRef("");
+  
+  const submit = () => onSearch(query);
+
+  // Debounce
+  useEffect(() => {
+    const handler = setTimeout(submit, 500);
+
+    return () => clearTimeout(handler);
+  }, [query]);
 
   return (
-    <form onSubmit={() => onSearch(query)}>
+    <form onSubmit={submit}>
       <div className="p-inputgroup flex-1">
         <InputText
           placeholder="Album search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          // onChange={(e) => (query.current = e.target.value)}
         />
 
         <Button label="Search" type="submit" />
-        {/* <Button label="Search" onClick={() => onSearch(query.current)} /> */}
       </div>
     </form>
   );
