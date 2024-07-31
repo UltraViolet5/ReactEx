@@ -237,3 +237,11 @@ Promise.allSettled([ pKot, pPies ]).then(res => console.log(res) )
 // 0: {status: 'fulfilled', value: 'Ala ma  kota '}
 // 1: {status: 'rejected', reason: 123}
 ```
+
+# Fetch
+
+```js
+fetch('http://localhost:5173/albums.json')
+    .then(resp => resp.json() )
+    .then(data => console.log(data) )
+```

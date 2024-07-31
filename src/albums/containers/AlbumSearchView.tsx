@@ -5,13 +5,13 @@ import { fetchAlbumSearchResults } from "../../core/services/MusicAPI";
 import { Album } from "../../core/model/Album";
 
 type Props = {};
- 
+
 const AlbumSearchView = (props: Props) => {
-  const [albums, setAlbums] = useState<Album[]>([])
+  const [albums, setAlbums] = useState<Album[]>([]);
 
   const search = (query = "") => {
-    const results = fetchAlbumSearchResults(query);
-    setAlbums(results)
+    fetchAlbumSearchResults(query)
+      .then(setAlbums);
   };
 
   return (
