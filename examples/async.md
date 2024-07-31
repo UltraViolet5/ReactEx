@@ -214,3 +214,21 @@ function echo(msg, err) {
 // Nie ma kota!
 //  Uncaught (in promise) Ups..
 ```
+
+# Promise .all, .allSettled, .race
+
+```js
+ p = echo('Ala')
+     .then(res => echo(res + ' ma '))
+     
+     pKot = p.then(res => echo(res + ' kota ' ))
+             .then(res => echo(res )) 
+
+     pPies = p.then(res => echo(res + ' pieseła '))
+
+    // Natural transformation
+    Promise.all([ pKot, pPies ]).then(res => console.log(res) ) 
+ 
+// Promise {<pending>}
+// ['Ala ma  kota ', 'Ala ma  pieseła ']
+```
