@@ -186,3 +186,5 @@ dist/assets/PlaylistsView-C3FcaiuJ.js         27.45 kB │ gzip:  10.25 kB
 dist/assets/index-BvOaEU2Z.js                356.72 kB │ gzip: 109.53 kB
 ✓ built in 4.33s
 
+# Deployment - rewrite URLs
+https://v17.angular.io/guide/deployment#routed-apps-must-fall-back-to-indexhtml
