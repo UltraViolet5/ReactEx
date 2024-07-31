@@ -22,6 +22,10 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
     user,
     login,
     logout,
+
+    // getState() 
+    // subscribe( callback )
+    // dispatch()
   };
 
   return (

@@ -6,6 +6,9 @@ import { useUserProfile } from "./core/contexts/UserContext";
 export function NavBar() {
   const { user, login, logout } = useUserProfile();
 
+  // Good Context has no state, just events mapped to local state in hook 
+  // const user = useSelector(store => store.users.activeUser)
+
   return (
     <div className="flex justify-between items-center gap-5">
       <h1>React App</h1>
