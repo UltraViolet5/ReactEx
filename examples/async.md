@@ -245,3 +245,26 @@ fetch('http://localhost:5173/albums.json')
     .then(resp => resp.json() )
     .then(data => console.log(data) )
 ```
+
+
+# Async/Await Try/Catch
+
+```js
+
+async function pobierzZoo() {
+    try{
+     const user = await echo('Ala',123) 
+     
+     const Kot = await echo(user + ' ma kota ' )
+     const pies = await echo(user + ' ma pieseła ')
+
+      return [Kot, pies]
+        
+    }catch(error){
+        return echo('Nie ma zoo!')
+    }
+}
+
+pobierzZoo().then(console.log) 
+
+```
