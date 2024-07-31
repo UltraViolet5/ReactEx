@@ -1,27 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Album } from "../../core/model/Album";
 import { fetchAlbumSearchResults } from "../../core/services/MusicAPI";
+import { Options } from "ky";
 
 export function useFetch<T, TParam, TRet>(
   params: TParam,
-  fetcher: (params?: TParam) => Promise<T>,
+  fetcher: (params?: TParam, options?: Options) => Promise<T>,
   selector: (res: T) => TRet
-): {
-  isLoading: boolean;
-  error: unknown;
-  data: TRet | undefined;
-} {
+) {
   const [data, setData] = useState<TRet>();
   const [error, setError] = useState<unknown>();
   const [isLoading, setIsLoading] = useState(false);
 
+  const ctrl = useRef<AbortController>();
+
   useEffect(() => {
     if (!params) return;
+
+    ctrl.current?.abort();
+    ctrl.current = new AbortController();
 
     setIsLoading(true);
     setError(undefined);
 
-    fetcher(params)
+    fetcher(params, { signal: ctrl.current.signal })
       .then((data) => setData(selector(data)))
       .catch(setError)
       .finally(() => setIsLoading(false));

@@ -1,17 +1,21 @@
+import { Options } from "ky";
 import { AlbumSearchResponse, PagingObject } from "../model/Album";
 import { Playlist } from "../model/Playlist";
 import { MusicAPI } from "./APIConfig";
 
-export function fetchAlbumSearchResults(query = 'batman') {
+export function fetchAlbumSearchResults(query = 'batman', options?: Options) {
     return MusicAPI.get('search', {
         searchParams: {
             type: 'album', q: query
         },
+        ...options
     }).json<AlbumSearchResponse>();
 }
 
-export function fetchPlaylists() {
-    return MusicAPI.get('me/playlists', {}).json<PagingObject<Playlist>>();
+export function fetchPlaylists(options?: Options) {
+    return MusicAPI.get('me/playlists', {
+        ...options
+    }).json<PagingObject<Playlist>>();
 }
 
 
