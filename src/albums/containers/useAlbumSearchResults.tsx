@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import { Album } from "../../core/model/Album";
+import { useState, useEffect } from "react";
 import { fetchAlbumSearchResults } from "../../core/services/MusicAPI";
 import { Options } from "ky";
 

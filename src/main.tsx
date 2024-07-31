@@ -31,7 +31,7 @@ const client = new QueryClient({
 
         return false;
       },
-      retryDelay(failureCount, error) {
+      retryDelay(failureCount/* , error */) {
         return 500 * failureCount ** 2;
       },
     },
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
             // path: "albums/feeg5nb5v", // useParams()['albumId'] == feeg5nb5v
             path: "albums/:albumId", // useParams()['albumId']
             element: <AlbumDetailView />,
-            loader: async ({ params, request, context }) => {
+            loader: async ({ params/* , request, context  */}) => {
               if (!params["albumId"])
                 throw new Response("Not Found", { status: 404 });
 

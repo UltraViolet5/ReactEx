@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 
 // window.React = React
@@ -36,7 +35,7 @@ const users: User[] = [
 ];
 
 // const user: User = users[1];
-const user = users[1];
+// const user = users[1];
 
 // const UserProfile = (props: Props) => {
 //   const user = props.user;

@@ -1,10 +1,9 @@
-import { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import ResultsGrid from "../components/ResultsGrid";
 import { Loader } from "./Loader";
 import { fetchAlbumSearchResults } from "../../core/services/MusicAPI";
 import { useQuery } from "@tanstack/react-query";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const AlbumSearchView = () => {
   const [searchParams, updateParams] = useSearchParams();

@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDebounceEffect } from "./useDebounceEffect";
 
 type Props = { query: string; onSearch: (query: string) => void };

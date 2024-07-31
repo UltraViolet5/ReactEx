@@ -1,6 +1,5 @@
-import { Button, ButtonProps } from "primereact/button";
-import { Card, CardProps } from "primereact/card";
-import React, { PropsWithChildren } from "react";
+import { Card } from "primereact/card";
+import { PropsWithChildren } from "react";
 import { SmallButton } from "../../core/components/SmallButton";
 import { Album } from "../../core/model/Album";
 import { Link } from "react-router-dom";

@@ -1,8 +1,6 @@
-import React, { useEffect, useId, useState } from "react";
+import React, {  } from "react";
 import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
-import { useFocus } from "../../core/hooks/useFocus";
-import { useUserProfile } from "../../core/contexts/UserContext";
 import { Controller, useForm } from "react-hook-form";
 
 type Props = {

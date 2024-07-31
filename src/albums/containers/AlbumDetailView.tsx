@@ -1,4 +1,3 @@
-import React from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { AlbumResponse } from "../../core/model/Album";
 import AlbumCard from "../components/AlbumCard";

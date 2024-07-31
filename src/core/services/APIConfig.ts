@@ -8,7 +8,7 @@ export const MusicAPI = ky.create({
     prefixUrl: 'https://api.spotify.com/v1/', // TODO: Config
     hooks: { // Axios -> Interceptors
         beforeRequest: [
-            (request, options) => {
+            (request) => {
                 request.headers.set('Authorization', `Bearer ${getToken()}`) // TODO: Get real token!
                 return request
             }

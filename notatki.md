@@ -167,3 +167,22 @@ https://swr.vercel.app/
 https://tanstack.com/query/latest
 
 https://tkdodo.eu/blog/practical-react-query
+
+# Build
+
+npm run build
+
+> vite-project@0.0.0 build
+> tsc -b && vite build
+
+vite v5.3.5 building for production...
+✓ 122 modules transformed.
+dist/index.html                                0.46 kB │ gzip:   0.30 kB
+dist/assets/Inter-roman.var-e-DsT6iu.woff2   410.67 kB
+dist/assets/Inter-italic.var-C0P-kdXT.woff2  443.55 kB
+dist/assets/PlaylistsView-PMi95QX9.css         0.06 kB │ gzip:   0.07 kB
+dist/assets/index-eA82Jc1s.css               195.29 kB │ gzip:  22.61 kB
+dist/assets/PlaylistsView-C3FcaiuJ.js         27.45 kB │ gzip:  10.25 kB
+dist/assets/index-BvOaEU2Z.js                356.72 kB │ gzip: 109.53 kB
+✓ built in 4.33s
+
