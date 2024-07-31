@@ -3,7 +3,7 @@ import { InputText } from "primereact/inputtext";
 import React, { useRef, useState } from "react";
 
 type Props = {
-  onSearch: (query?: string) => void;
+  onSearch: (query: string) => void;
 };
 
 const SearchForm = ({ onSearch }: Props) => {
@@ -11,7 +11,7 @@ const SearchForm = ({ onSearch }: Props) => {
   // const query = useRef("");
 
   return (
-    <div>
+    <form onSubmit={() => onSearch(query)}>
       <div className="p-inputgroup flex-1">
         <InputText
           placeholder="Album search..."
@@ -20,10 +20,10 @@ const SearchForm = ({ onSearch }: Props) => {
           // onChange={(e) => (query.current = e.target.value)}
         />
 
-        <Button label="Search" onClick={() => onSearch(query)} />
+        <Button label="Search" type="submit" />
         {/* <Button label="Search" onClick={() => onSearch(query.current)} /> */}
       </div>
-    </div>
+    </form>
   );
 };
 
