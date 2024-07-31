@@ -38,3 +38,51 @@ console.log(5)  // sync
 ## The Loop
 https://www.youtube.com/watch?v=cCOL7MC4Pl0&ab_channel=JSConf
 https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf
+
+---
+
+# Echo
+
+```js
+function echo(msg) {
+    setTimeout(()=>{
+        console.log(msg)
+    },2000)
+}
+
+wynik = echo('Ala ma kota')
+
+console.log(wynik, 'juz')
+
+123
+
+// undefined 'juz'
+// 123
+// Ala ma kota
+```
+
+---
+
+#   Hollywod Principle 
+```js
+// CSP Continuation Passing Style / Callback / Wywołanie zwrotne
+
+function echo(msg, callback) {
+    setTimeout(()=>{
+        callback(msg)
+    }, 2_000)
+}
+
+echo('Ala ma kota', ComA )
+
+echo('Ala ma banana', ComB), 
+
+
+ function ComA(msg) {
+     console.log('A',msg)
+ }
+ 
+ function ComB(msg) {
+     console.log('B',msg)
+ }
+ ```
