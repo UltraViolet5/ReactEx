@@ -12,8 +12,8 @@ const AlbumSearchView = (props: Props) => {
 
   const search = (query = "") => {
     fetchAlbumSearchResults(query)
-    .then(setAlbums)
-    .catch(setError);
+      .then((data) => setAlbums(data.albums.items))
+      .catch(setError);
   };
 
   return (
