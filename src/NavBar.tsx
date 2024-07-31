@@ -4,9 +4,7 @@ import { initLogin } from "./core/services/Auth";
 import { useUserProfile } from "./core/contexts/UserContext";
 
 export function NavBar() {
-  const { user, login, logout } = useUserProfile();
-
-  // Good Context has no state, just events mapped to local state in hook 
+  // Good Context has no state, just events mapped to local state in hook
   // const user = useSelector(store => store.users.activeUser)
 
   return (
@@ -18,11 +16,7 @@ export function NavBar() {
 
       <div className="flex-1"></div>
 
-      {user ? (
-        <span onClick={logout}>Hello {user.display_name}</span>
-      ) : (
-        <span onClick={login}>Hello Guest</span>
-      )}
+      <UserWidget />
 
       <SmallButton
         label="Login"
@@ -31,5 +25,19 @@ export function NavBar() {
         onClick={initLogin}
       />
     </div>
+  );
+}
+
+function UserWidget() {
+  const { user, login, logout } = useUserProfile();
+
+  return (
+    <>
+      {user ? (
+        <span onClick={logout}>Hello {user.display_name}</span>
+      ) : (
+        <span onClick={login}>Hello Guest</span>
+      )}
+    </>
   );
 }

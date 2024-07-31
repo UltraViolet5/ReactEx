@@ -3,6 +3,7 @@ import { Playlist } from "../../core/model/Playlist";
 import { Button } from "primereact/button";
 import { useFocus } from "../../core/hooks/useFocus";
 import { useUserProfile } from "../../core/contexts/UserContext";
+import { Controller, useForm } from "react-hook-form";
 
 type Props = {
   playlist?: Playlist;
@@ -23,66 +24,44 @@ const PlaylistEditor = React.memo(
     onCancel,
     onSave,
   }: Props) => {
-    const [playlistState, setPlaylistState] = useState(playlistFromProps);
+    const { register, handleSubmit, watch, control } = useForm({
+      values: playlistFromProps,
+    });
 
-    // Sync with parent props:
-    useEffect(() => setPlaylistState(playlistFromProps), [playlistFromProps]);
+    // const {name, ref, onBlur, onChange, disabled} = register('name')
 
-    const uuid = useId();
-
-    const { ref: playlistNameRef } = useFocus([playlistState.id]);
-
-    const changeHandler = (
-      event: React.ChangeEvent<HTMLInputElement>
-    ): void => {
-      setPlaylistState({ ...playlistState, name: event.target.value });
-    };
-
-    const submit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      onSave(playlistState);
-    };
-
-    const {user} = useUserProfile()
+    // const playlistName = watch("name");
 
     return (
-      <form onSubmit={submit}>
-        {/* <pre>{JSON.stringify(playlistFromProps, null, 2)}</pre>
-        <pre>{JSON.stringify(playlist, null, 2)}</pre> */}
-
+      <form
+        onSubmit={handleSubmit((data) => {
+          onSave(data);
+        })}
+      >
         <div className="grid gap-3">
           <div className="grid">
             <label>Name</label>
-            <input
-              type="text"
-              value={playlistState.name}
-              onChange={changeHandler}
-              id={uuid + "playlistName"}
-              ref={playlistNameRef}
+            <Controller
+              name="name"
+              control={control}
+              render={({ field, fieldState }) => (
+                <>
+                  <input type="text" {...field} />
+                  <div className="text-end">{field.value.length} / 100</div>
+                </>
+              )}
             />
-            <div className="text-end">{playlistState.name.length} / 100</div>
           </div>
 
           <div className="grid ">
             <label className="flex gap-2 items-center">
-              <input
-                type="checkbox"
-                checked={playlistState.public}
-                onChange={(e) =>
-                  setPlaylistState({ ...playlistState, public: e.target.checked })
-                }
-              />
+              <input type="checkbox" {...register("public")} />
               Public
             </label>
           </div>
           <div className="grid">
             <label>Description</label>
-            <textarea
-              value={playlistState.description}
-              onChange={(e) =>
-                setPlaylistState({ ...playlistState, description: e.target.value })
-              }
-            />
+            <textarea {...register("description")} />
           </div>
 
           <div className="flex justify-between">
@@ -105,3 +84,25 @@ const PlaylistEditor = React.memo(
 );
 
 export default PlaylistEditor;
+
+/*  const [playlistState, setPlaylistState] = useState(playlistFromProps);
+
+    // Sync with parent props:
+    useEffect(() => setPlaylistState(playlistFromProps), [playlistFromProps]);
+
+    const uuid = useId();
+
+    const { ref: playlistNameRef } = useFocus([playlistState.id]);
+
+    const changeHandler = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+      setPlaylistState({ ...playlistState, name: event.target.value });
+    };
+
+    const submit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      onSave(playlistState);
+    };
+
+    const {user} = useUserProfile() */
