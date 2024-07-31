@@ -7,7 +7,7 @@ import { useAlbumSearchResults } from "./useAlbumSearchResults";
 const AlbumSearchView = () => {
   const [query, setQuery] = useState("");
 
-  const { isLoading, error, albums } = useAlbumSearchResults(query);
+  const { isLoading, error, data: albums = [] } = useAlbumSearchResults(query);
 
   return (
     <div className="container">
