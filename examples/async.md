@@ -231,4 +231,9 @@ function echo(msg, err) {
  
 // Promise {<pending>}
 // ['Ala ma  kota ', 'Ala ma  pieseła ']
+
+
+Promise.allSettled([ pKot, pPies ]).then(res => console.log(res) ) 
+// 0: {status: 'fulfilled', value: 'Ala ma  kota '}
+// 1: {status: 'rejected', reason: 123}
 ```
