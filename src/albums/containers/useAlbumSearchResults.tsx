@@ -12,21 +12,21 @@ export function useFetch<T, TParam, TRet>(
   const [error, setError] = useState<unknown>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const ctrl = useRef<AbortController>();
-
   useEffect(() => {
     if (!params) return;
 
-    ctrl.current?.abort();
-    ctrl.current = new AbortController();
+    const ctrl = new AbortController();
 
     setIsLoading(true);
     setError(undefined);
 
-    fetcher(params, { signal: ctrl.current.signal })
+    fetcher(params, { signal: ctrl.signal })
       .then((data) => setData(selector(data)))
       .catch(setError)
       .finally(() => setIsLoading(false));
+
+    // Effect Destructor - params changes and on destroy!
+    return () => ctrl.abort();
   }, [params]);
 
   return {

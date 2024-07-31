@@ -5,7 +5,7 @@ import "./index.css";
 import { PrimeReactProvider } from "primereact/api";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <React.StrictMode> {/* // Run Effects 2x */}
     <PrimeReactProvider>
       <App />
     </PrimeReactProvider>
