@@ -8,10 +8,12 @@ type Props = {};
 
 const AlbumSearchView = (props: Props) => {
   const [albums, setAlbums] = useState<Album[]>([]);
+  const [error, setError] = useState<unknown>();
 
   const search = (query = "") => {
     fetchAlbumSearchResults(query)
-      .then(setAlbums);
+    .then(setAlbums)
+    .catch(setError);
   };
 
   return (
@@ -24,6 +26,9 @@ const AlbumSearchView = (props: Props) => {
         </div>
 
         <div>
+          {error instanceof Error && (
+            <p className="text-red-500 p-4">{error.message}</p>
+          )}
           <ResultsGrid results={albums} />
         </div>
       </div>
