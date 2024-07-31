@@ -58,7 +58,8 @@ const router = createBrowserRouter([
             element: <AlbumSearchView />,
           },
           {
-            path: "albums/:albumId", // useParams()
+            // path: "albums/feeg5nb5v", // useParams()['albumId'] == feeg5nb5v
+            path: "albums/:albumId", // useParams()['albumId']
             element: <AlbumDetailView />,
             loader: async ({ params, request, context }) => {
               if (!params["albumId"])
