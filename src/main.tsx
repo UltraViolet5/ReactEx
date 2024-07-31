@@ -41,6 +41,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    id: "app",
     loader() {
       return checkLogin();
     },
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
             element: <AlbumSearchView />,
           },
           {
-            path: "albums/:albumId",
+            path: "albums/:albumId", // useParams()
             element: <AlbumDetailView />,
             loader: async ({ params, request, context }) => {
               if (!params["albumId"])

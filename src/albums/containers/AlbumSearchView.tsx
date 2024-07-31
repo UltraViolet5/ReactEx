@@ -2,18 +2,16 @@ import { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import ResultsGrid from "../components/ResultsGrid";
 import { Loader } from "./Loader";
-import { useAlbumSearchResults, useFetch } from "./useAlbumSearchResults";
 import { fetchAlbumSearchResults } from "../../core/services/MusicAPI";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 const AlbumSearchView = () => {
-  const [query, setQuery] = useState("");
+  const [searchParams, updateParams] = useSearchParams();
+  const query = searchParams.get("q") || "";
 
-  // const {
-  //   isLoading,
-  //   error,
-  //   data: albums = [],
-  // } = useFetch(query, fetchAlbumSearchResults, (data) => data.albums.items);
+  // const go = useNavigate();
+  // go(`albums/search?q`, { replace: true });
 
   const {
     data: albums = [],
@@ -32,7 +30,7 @@ const AlbumSearchView = () => {
 
       <div className="grid gap-5">
         <div>
-          <SearchForm onSearch={setQuery} />
+          <SearchForm query={query} onSearch={(q) => updateParams({ q })} />
         </div>
 
         <div>

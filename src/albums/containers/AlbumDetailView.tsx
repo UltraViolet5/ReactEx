@@ -1,18 +1,19 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { AlbumResponse } from "../../core/model/Album";
 import AlbumCard from "../components/AlbumCard";
 
 type Props = {};
 
 const AlbumDetailView = (props: Props) => {
+  const params = useParams();
+  const albumId = params["albumId"];
+
   const album = useLoaderData() as AlbumResponse;
 
   return (
     <div>
-      <h3 className="text-5xl leading-loose">
-        {album.name}
-      </h3>
+      <h3 className="text-5xl leading-loose">{album.name}</h3>
       <div className="grid grid-cols-2 gap-5">
         <div>
           <AlbumCard album={album} />

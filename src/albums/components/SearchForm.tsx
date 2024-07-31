@@ -3,12 +3,12 @@ import { InputText } from "primereact/inputtext";
 import React, { useEffect, useRef, useState } from "react";
 import { useDebounceEffect } from "./useDebounceEffect";
 
-type Props = {
-  onSearch: (query: string) => void;
-};
+type Props = { query: string; onSearch: (query: string) => void };
 
-const SearchForm = ({ onSearch }: Props) => {
-  const [query, setQuery] = useState("");
+const SearchForm = ({ onSearch, query: parentQuery }: Props) => {
+  const [query, setQuery] = useState(parentQuery);
+
+  useEffect(() => setQuery(parentQuery), [parentQuery]);
 
   const submit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const SearchForm = ({ onSearch }: Props) => {
   };
 
   useDebounceEffect(() => {
-    onSearch(query);
+    if (parentQuery !== query) onSearch(query);
   }, [query]);
 
   return (
