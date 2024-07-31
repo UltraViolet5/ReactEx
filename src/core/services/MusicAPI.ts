@@ -1,36 +1,20 @@
-import ky, { HTTPError } from "ky";
-import { AlbumResponse } from "../model/Album";
-import mockAlbums from "../model/mockAlbums";
+import { AlbumResponse, PagingObject } from "../model/Album";
+import { Playlist } from "../model/Playlist";
+import { MusicAPI } from "./APIConfig";
 
-const MusicAPI = ky.create({
-    headers: {
-        Authorization: `Bearer lubieplacki` // TODO: Get real token!
-    },
-    prefixUrl: 'https://api.spotify.com/v1/', // TODO: Config
-})
-
-export async function fetchAlbumSearchResults(query = 'batman') {
-    try {
-        return await MusicAPI.get('search', {
-            searchParams: {
-                type: 'album', q: query
-            },
-        }).json<AlbumResponse[]>();
-    } catch (error: unknown) {
-        if (!(error instanceof HTTPError)) throw new Error('Unexpected error!')
-
-        const data = await error.response.json<SpotifyError>()
-        return Promise.reject(new Error(data.error.message))
-    }
+export function fetchAlbumSearchResults(query = 'batman') {
+    return MusicAPI.get('search', {
+        searchParams: {
+            type: 'album', q: query
+        },
+    }).json<AlbumResponse[]>();
 }
 
 
-export interface SpotifyError {
-    error: {
-        status: number;
-        message: string;
-    };
+export function fetchPlaylists() {
+    return MusicAPI.get('me/playlists', {}).json<PagingObject<Playlist>>();
 }
+
 
 // export function fetchAlbumSearchResults(query = 'batman') {
 //     return ky.get('https://api.spotify.com/v1')
