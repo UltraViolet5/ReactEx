@@ -19,6 +19,7 @@ export const initLogin = () => {
 }
 
 export const checkLogin = () => {
+    
     const params = new URLSearchParams(window.location.hash)
     const access_token = params.get('#access_token')
 

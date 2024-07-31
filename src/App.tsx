@@ -6,15 +6,14 @@ import { checkLogin, initLogin } from "./core/services/Auth";
 import { useMemo } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-function App() {
-  const loggedIn = useMemo(checkLogin, []);
+function App() { 
 
   return (
     <>
       <div className="container">
         <div className="flex justify-between items-center gap-5">
           <h1>React App</h1>
-          
+
           <NavLink to={"/music/search"}>Search</NavLink>
           <NavLink to={"/playlists"}>Playlists</NavLink>
 

@@ -10,7 +10,10 @@ type Props = {
 const SearchForm = ({ onSearch }: Props) => {
   const [query, setQuery] = useState("");
 
-  const submit = () => onSearch(query);
+  const submit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    onSearch(query);
+  };
 
   useDebounceEffect(() => {
     onSearch(query);

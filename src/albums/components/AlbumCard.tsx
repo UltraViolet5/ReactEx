@@ -3,6 +3,7 @@ import { Card, CardProps } from "primereact/card";
 import React, { PropsWithChildren } from "react";
 import { SmallButton } from "../../core/components/SmallButton";
 import { Album } from "../../core/model/Album";
+import { Link } from "react-router-dom";
 
 type Props = {
   album: Album;
@@ -16,12 +17,14 @@ const AlbumCard = ({ children, album }: PropsWithChildren<Props>) => {
         footer={() => {
           return (
             <div className="flex justify-end">
-              <SmallButton
-                size="small"
-                link={false}
-                label="details"
-                primary={true}
-              />
+              <Link to={`/music/albums/${album.id}`}>
+                <SmallButton
+                  size="small"
+                  link={false}
+                  label="details"
+                  primary={true}
+                />
+              </Link>
             </div>
           );
         }}

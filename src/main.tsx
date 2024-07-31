@@ -12,10 +12,27 @@ import {
 import AlbumSearchView from "./albums/containers/AlbumSearchView.tsx";
 import PlaylistsView from "./playlists/containers/PlaylistsView.tsx";
 import AlbumDetailView from "./albums/containers/AlbumDetailView.tsx";
+import { HTTPError } from "ky";
+import { checkLogin } from "./core/services/Auth.ts";
 
 const client = new QueryClient({
   defaultOptions: {
-    queries: {},
+    queries: {
+      retry(failureCount, error) {
+        if (failureCount > 3) return false;
+
+        if (
+          error instanceof HTTPError &&
+          [0, 500, 426].includes(error.response.status)
+        )
+          return true;
+
+        return false;
+      },
+      retryDelay(failureCount, error) {
+        return 500 * (failureCount ** 2);
+      },
+    },
   },
 });
 
@@ -51,6 +68,7 @@ const router = createBrowserRouter([
       {
         path: "callback",
         loader() {
+          checkLogin()
           return redirect("/music/search");
         },
       },
