@@ -163,3 +163,54 @@ p2 = p1.then((res) => echo(res + 'kota') )
 p2.then(console.log)
 
 ```
+
+
+## Flatten
+```js
+// callback pyramid of doom
+
+function echo(msg) {
+    return new Promise((resolve)=>{       
+        setTimeout(()=>{
+            resolve(msg)
+        }, 2_000)
+    }) 
+}
+
+ p = echo('Ala')
+     .then(res => echo(res + ' ma '))
+     
+     p.then(res => echo(res + ' kota '))
+     .then(res => console.log(res) )
+
+     p.then(res => echo(res + ' pieseła '))
+     .then(res => console.log(res) ) 
+ 
+```
+
+# Promise error handling
+
+```js
+function echo(msg, err) {
+    return new Promise((resolve, reject)=>{       
+        setTimeout(()=>{
+            err ? reject(err) : resolve(msg)
+        }, 2_000)
+    }) 
+}
+
+ p = echo('Ala', 'Ups..')
+     .then(res => echo(res + ' ma '))
+     
+     p
+     .then(res => echo(res + ' kota ',' Upss' ))
+     .catch(err => ('Nie ma kota!'))
+     .then(res => console.log(res) ) //  Nie ma kota!
+
+     p
+     .then(res => echo(res + ' pieseła '))
+     .then(res => console.log(res) ) // Uncaught (in promise) Ups..
+
+// Nie ma kota!
+//  Uncaught (in promise) Ups..
+```
