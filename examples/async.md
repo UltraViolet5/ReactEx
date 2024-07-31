@@ -81,8 +81,35 @@ echo('Ala ma banana', ComB),
  function ComA(msg) {
      console.log('A',msg)
  }
- 
+
  function ComB(msg) {
      console.log('B',msg)
  }
- ```
+
+// 2 sec ..
+
+// A Ala ma kota
+// B Ala ma banana
+```
+
+
+# callback pyramid of doom
+
+```js
+function echo(msg, callback) {
+    setTimeout(()=>{
+        callback(msg)
+    }, 2_000)
+}
+
+echo('Ala', res => {
+     echo(res + ' ma ', res => {
+        echo(res + ' kota ', res => {
+            console.log(res)
+        })
+     })
+})
+
+// 6 sec...
+// Ala ma  kota 
+```
