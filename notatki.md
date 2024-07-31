@@ -188,3 +188,8 @@ dist/assets/index-BvOaEU2Z.js                356.72 kB │ gzip: 109.53 kB
 
 # Deployment - rewrite URLs
 https://v17.angular.io/guide/deployment#routed-apps-must-fall-back-to-indexhtml
+
+
+## Proxy to Spring /etc /api
+
+https://vitejs.dev/config/server-options#server-proxy
