@@ -148,3 +148,13 @@ https://github.com/sindresorhus/ky
 
 https://axios-http.com/docs/intro
 
+
+# Eslint - Warnings in Yellow
+```json
+    "eslint.rules.customizations": [
+        {
+            "rule": "*",
+            "severity": "warn"
+        }
+    ],
+```

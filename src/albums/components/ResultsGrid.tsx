@@ -1,4 +1,3 @@
-import React from "react";
 import AlbumCard from "./AlbumCard";
 import { Album } from "../../core/model/Album";
 

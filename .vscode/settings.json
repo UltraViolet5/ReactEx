@@ -1,3 +1,10 @@
 {
     "tailwindCSS.emmetCompletions": true,
+    
+    "eslint.rules.customizations": [
+        {
+            "rule": "*",
+            "severity": "warn"
+        }
+    ],
 }
