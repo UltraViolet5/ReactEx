@@ -111,3 +111,30 @@ touch src/albums/components/AlbumCard.tsx
 ## The Loop - Jake Archibald
 https://www.youtube.com/watch?v=cCOL7MC4Pl0&ab_channel=JSConf
 https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf
+
+
+# Functional concepts
+
+- Immutability
+- Pure Functions
+- Referential transparency 
+- Memoization ( cache )
+
+
+# Functional structures
+
+- Magma
+- Semigroup
+- Monoid
+- Group
+- Functor
+- Apply / Applicative
+- Monad
+
+- Lattice
+- Ord
+- Poset
+- Lenses
+
+
+https://learnyouahaskell.com/ 
