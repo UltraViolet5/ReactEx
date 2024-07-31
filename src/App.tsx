@@ -4,7 +4,7 @@ import PlaylistsView from "./playlists/containers/PlaylistsView";
 import { SmallButton } from "./core/components/SmallButton";
 import { checkLogin, initLogin } from "./core/services/Auth";
 import { useMemo } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 function App() {
   const loggedIn = useMemo(checkLogin, []);
@@ -12,14 +12,21 @@ function App() {
   return (
     <>
       <div className="container">
-        <SmallButton
-          label="Login"
-          severity="contrast"
-          className="float-end"
-          onClick={initLogin}
-        />
+        <div className="flex justify-between items-center gap-5">
+          <h1>React App</h1>
+          
+          <NavLink to={"/music/search"}>Search</NavLink>
+          <NavLink to={"/playlists"}>Playlists</NavLink>
 
-        <h1>React App</h1>
+          <div className="flex-1"></div>
+
+          <SmallButton
+            label="Login"
+            severity="contrast"
+            className="float-end"
+            onClick={initLogin}
+          />
+        </div>
 
         <Outlet />
       </div>

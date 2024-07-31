@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   createBrowserRouter,
   redirect,
-  RouteObject,
   RouterProvider,
 } from "react-router-dom";
 import AlbumSearchView from "./albums/containers/AlbumSearchView.tsx";
@@ -19,7 +18,6 @@ const client = new QueryClient({
     queries: {},
   },
 });
-
 
 const router = createBrowserRouter([
   {
@@ -45,7 +43,10 @@ const router = createBrowserRouter([
       },
       {
         path: "playlists",
-        element: <PlaylistsView />,
+        lazy: () =>
+          import("./playlists/containers/PlaylistsView.tsx").then((e) => ({
+            Component: e.default,
+          })),
       },
       {
         path: "callback",
