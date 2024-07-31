@@ -142,3 +142,24 @@ console.log('juz')
 // Ala
 
 ```
+
+## Promise chain + flatMap
+
+```js
+
+
+ // echo('Ala').then(res => {
+ //     echo(res + ' ma ').then((res) => {
+ //         echo(res + ' kote ').then((res) => {
+ //                console.log(res)
+ //         })
+ //     })
+ // })
+
+p = echo('Ala')
+p1 = p.then((res) => res + ' ma ' )
+p2 = p1.then((res) => echo(res + 'kota') )
+
+p2.then(console.log)
+
+```
